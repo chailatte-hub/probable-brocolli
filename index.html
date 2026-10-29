@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cheryl Chai</title>
+<meta name="description" content="Cheryl Chai is a product designer at HeyMax, designing how people earn, find and redeem travel rewards.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #EDF1F5;
+    --ink: #17223A;
+    --muted: #5B6679;
+    --line: #C9D2DD;
+    --red: #C8323A;
+    --blue: #2B4C9B;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #141B2B;
+      --ink: #E6EBF2;
+      --muted: #9AA6B8;
+      --line: #2C3850;
+      --red: #E25A5F;
+      --blue: #6F8FDB;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Schibsted Grotesk", system-ui, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.55;
+  }
+
+  /* The one bold element: an airmail edge */
+  .airmail {
+    height: 14px;
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--red) 0 22px,
+      transparent 22px 34px,
+      var(--blue) 34px 56px,
+      transparent 56px 68px
+    );
+  }
+
+  .wrap {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 5vw, 56px);
+  }
+
+  header.hero {
+    padding: clamp(64px, 14vh, 160px) 0 clamp(48px, 10vh, 112px);
+  }
+  h1 {
+    margin: 0;
+    font-weight: 800;
+    font-size: clamp(3.5rem, 13vw, 10.5rem);
+    line-height: 0.88;
+    letter-spacing: -0.045em;
+  }
+  .intro {
+    margin: 2rem 0 0;
+    max-width: 34ch;
+    font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+    line-height: 1.35;
+    color: var(--ink);
+  }
+  .intro a { color: inherit; text-decoration-color: var(--red); text-underline-offset: 0.18em; text-decoration-thickness: 2px; }
+
+  section { padding: 0 0 clamp(56px, 10vh, 112px); }
+  h2 {
+    margin: 0 0 1.25rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  .work { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .work li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) auto;
+    gap: 1.5rem;
+    align-items: baseline;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .work h3 { margin: 0; font-size: 1.5rem; font-weight: 500; letter-spacing: -0.01em; }
+  .work p { margin: 0; color: var(--muted); max-width: 52ch; }
+  .work .status { font-size: 0.95rem; color: var(--muted); font-style: italic; white-space: nowrap; }
+
+  .about p { margin: 0 0 1rem; max-width: 60ch; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 1.75rem 0 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 2rem;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+  footer nav { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  a { color: var(--ink); }
+  a:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 2px; }
+
+  @media (max-width: 720px) {
+    .work li { grid-template-columns: 1fr; gap: 0.4rem; }
+  }
+</style>
+</head>
+<body>
+  <div class="airmail" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <header class="hero">
+      <h1>Cheryl<br>Chai</h1>
+      <p class="intro">Product designer at <a href="https://heymax.ai">HeyMax</a>. I design how people earn miles, find flights and turn rewards into trips.</p>
+    </header>
+
+    <section aria-labelledby="work-title">
+      <h2 id="work-title">Selected work</h2>
+      <ul class="work">
+        <li>
+          <h3>HeyMax First</h3>
+          <p>A tiered membership, from the first upsell to the everyday perks.</p>
+          <span class="status">Case study soon</span>
+        </li>
+        <li>
+          <h3>Flight search</h3>
+          <p>Finding award seats without needing to know how award seats work.</p>
+          <span class="status">Case study soon</span>
+        </li>
+        <li>
+          <h3>Miles redemption</h3>
+          <p>Moving rewards to airline partners in as few steps as possible.</p>
+          <span class="status">Case study soon</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="about" aria-labelledby="about-title">
+      <h2 id="about-title">About</h2>
+      <p>I work on the BOOST team at HeyMax, where loyalty programs meet everyday spending.</p>
+      <p>Most of my work lives in the small moments: an empty state that tells you what to do next, a confirmation that makes a redemption feel finished.</p>
+    </section>
+
+    <footer>
+      <span>© 2026 Cheryl Chai</span>
+      <nav aria-label="Contact">
+        <a href="mailto:hello@cherylchai.com">Email</a>
+        <a href="https://www.linkedin.com/">LinkedIn</a>
+      </nav>
+    </footer>
+  </div>
+</body>
+</html>
