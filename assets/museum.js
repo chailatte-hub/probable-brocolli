@@ -2,7 +2,8 @@
 window.Museum = function (opts) {
   const o = Object.assign({
     centre: 0.46,   // eye level: where the middle of each piece sits, share of screen height
-    gap: 0.16,      // space between pieces, share of screen height
+    gap: 0.10,      // space between columns, share of screen height
+    stackGap: 0.055,// space between stacked pieces (room for the caption)
     lead: 0.34,     // space before the first piece (where the name sits)
     tail: 0.30,     // space after the last piece
   }, opts);
@@ -19,33 +20,43 @@ window.Museum = function (opts) {
     ? `<video src="${p.video}" ${p.poster ? `poster="${p.poster}"` : ''} muted loop playsinline preload="metadata" ${closeup ? 'controls' : 'aria-hidden="true"'}></video>`
     : `<img src="${p.image}" alt="" ${closeup ? '' : 'loading="lazy" decoding="async"'}>`;
 
-  /* Build the wall */
-  const sets = [];
-  for (let s = 0; s < 1; s++) {
-    const live = true;
-    const set = document.createElement('div');
-    set.className = 'set';
-    set.style.paddingLeft = `calc(var(--H) * ${o.lead})`;
-    set.style.paddingRight = `calc(var(--H) * ${Math.max(0, o.tail - o.gap)})`;
-    set.innerHTML = `<p class="name"${live ? '' : ' aria-hidden="true"'}>Museum of Chai</p>`;
-    window.COLLECTION.forEach(p => {
-      const h = p.height || 0.45, w = h * (p.ratio || 0.75);
+  /* Build the wall: pieces hang in columns; a "stack" piece joins the column before it */
+  const set = document.createElement('div');
+  set.className = 'set';
+  set.style.paddingLeft = `calc(var(--H) * ${o.lead})`;
+  set.style.paddingRight = `calc(var(--H) * ${Math.max(0, o.tail - o.gap)})`;
+  set.innerHTML = `<p class="name">Museum of Chai</p>`;
+
+  const columns = [];
+  window.COLLECTION.forEach(p => {
+    if (p.stack && columns.length) columns[columns.length - 1].push(p);
+    else columns.push([p]);
+  });
+
+  columns.forEach(col => {
+    const heights = col.map(p => p.height || 0.4);
+    const total = heights.reduce((a, b) => a + b, 0) + o.stackGap * (col.length - 1);
+    const top = o.centre - total / 2 + (col[0].nudge || 0);
+    const bay = document.createElement('div');
+    bay.className = 'bay';
+    bay.style.cssText = `margin-top:calc(var(--H) * ${top});margin-right:calc(var(--H) * ${o.gap});gap:calc(var(--H) * ${o.stackGap});`;
+
+    col.forEach(p => {
+      const h = p.height || 0.4, w = h * (p.crop || p.ratio || 0.8);
       const el = document.createElement('div');
       el.className = 'piece' + (p.video ? ' moving' : '');
-      el.style.cssText =
-        `width:calc(var(--H) * ${w});height:calc(var(--H) * ${h});` +
-        `margin-top:calc(var(--H) * ${o.centre - h / 2});margin-right:calc(var(--H) * ${o.gap});`;
+      el.style.cssText = `width:calc(var(--H) * ${w});height:calc(var(--H) * ${h});--focus:${p.focus || '50% 50%'};`;
       el.innerHTML = `
-        <button class="art" type="button" ${live ? '' : 'tabindex="-1" aria-hidden="true"'} aria-label="${label(p)}. View up close">${media(p)}</button>
+        <button class="art" type="button" aria-label="${label(p)}. View up close">${media(p)}</button>
         ${p.place ? `<p class="place" aria-hidden="true">${p.place}</p>` : ''}
-        ${p.video ? `<button class="motion-toggle" type="button" ${live ? '' : 'tabindex="-1" aria-hidden="true"'} aria-label="Pause ${label(p)}">${PAUSE}</button>` : ''}`;
+        ${p.video ? `<button class="motion-toggle" type="button" aria-label="Pause ${label(p)}">${PAUSE}</button>` : ''}`;
       el.querySelector('.art').addEventListener('click', () => openCloseup(p));
-      set.appendChild(el);
+      bay.appendChild(el);
       if (p.video) wireMotion(el, label(p));
     });
-    track.appendChild(set);
-    sets.push(set);
-  }
+    set.appendChild(bay);
+  });
+  track.appendChild(set);
 
   /* Vertical wheel and arrow keys walk sideways */
   room.addEventListener('wheel', e => {
