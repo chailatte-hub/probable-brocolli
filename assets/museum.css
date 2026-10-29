@@ -7,7 +7,7 @@
 
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%; overflow: hidden; background: #fff; }
-body { font-family: "Hachi Maru Pop", "Comic Sans MS", cursive; color: var(--ink); }
+body { font-family: "Space Mono", ui-monospace, Menlo, monospace; color: var(--ink); }
 :focus-visible { outline: 1.5px solid var(--ink); outline-offset: 6px; }
 
 /* The wall: the whole screen, white fading to a faint grey toward the floor.
@@ -29,7 +29,7 @@ body { font-family: "Hachi Maru Pop", "Comic Sans MS", cursive; color: var(--ink
   position: absolute; margin: 0;
   left: calc(var(--H) * .08); top: 46%;
   transform: translateY(-50%);
-  font-size: max(13px, calc(var(--H) * .017));
+  font-size: max(11px, calc(var(--H) * .0135));
   letter-spacing: .02em;
   color: var(--soft);
   white-space: nowrap;
@@ -37,7 +37,7 @@ body { font-family: "Hachi Maru Pop", "Comic Sans MS", cursive; color: var(--ink
 
 .place {
   position: absolute; left: 0; top: 100%; margin: calc(var(--H) * .016) 0 0;
-  font-size: max(11px, calc(var(--H) * .0125));
+  font-size: max(10px, calc(var(--H) * .0115));
   letter-spacing: .02em; color: var(--soft); white-space: nowrap;
 }
 
@@ -76,7 +76,7 @@ dialog[open] { display: grid; place-items: center; }
   box-shadow: 0 10px 40px rgba(0,0,0,.12);
 }
 .closeup .big > img, .closeup .big > video { display: block; width: 100%; height: 100%; object-fit: cover; }
-.closeup .caption { margin: 0; text-align: center; font-size: 13px; display: grid; gap: 2px; }
+.closeup .caption { margin: 0; text-align: center; font-size: 12px; display: grid; gap: 4px; }
 .closeup .caption .h { color: var(--soft); }
 .close {
   position: fixed; top: 14px; right: 14px; padding: 8px 14px; border-radius: 999px;
