@@ -3,7 +3,7 @@ window.Museum = function (opts) {
   const o = Object.assign({
     centre: 0.46,   // eye level: where the middle of each piece sits, share of screen height
     gap: 0.10,      // space between columns, share of screen height
-    stackGap: 0.055,// space between stacked pieces (room for the caption)
+    stackGap: 0.035,// space between stacked pieces
     lead: 0.34,     // space before the first piece (where the name sits)
     tail: 0.30,     // space after the last piece
   }, opts);
@@ -48,7 +48,6 @@ window.Museum = function (opts) {
       el.style.cssText = `width:calc(var(--H) * ${w});height:calc(var(--H) * ${h});--focus:${p.focus || '50% 50%'};transform:translateX(calc(var(--H) * ${p.shift || 0}));`;
       el.innerHTML = `
         <button class="art" type="button" aria-label="${label(p)}. View up close">${media(p)}</button>
-        ${p.place ? `<p class="place" aria-hidden="true">${p.place}</p>` : ''}
         ${p.video ? `<button class="motion-toggle" type="button" aria-label="Pause ${label(p)}">${PAUSE}</button>` : ''}`;
       el.querySelector('.art').addEventListener('click', () => openCloseup(p));
       bay.appendChild(el);

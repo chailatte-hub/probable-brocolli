@@ -37,11 +37,6 @@ body { font-family: "Fragment Mono", ui-monospace, Menlo, monospace; color: var(
 }
 .name b { font-weight: 400; color: var(--ink); -webkit-text-stroke: .045em currentColor; paint-order: stroke fill; }
 
-.place {
-  position: absolute; left: 0; top: 100%; margin: calc(var(--H) * .016) 0 0;
-  font-size: max(10px, calc(var(--H) * .0115));
-  letter-spacing: .02em; color: var(--soft); white-space: nowrap;
-}
 
 /* A piece is just the image or video */
 .bay { display: flex; flex-direction: column; align-items: center; flex: none; }
