@@ -7,7 +7,7 @@
 
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%; overflow: hidden; background: #fff; }
-body { font-family: "Inter Tight", "Helvetica Neue", Arial, sans-serif; color: var(--ink); }
+body { font-family: "Hachi Maru Pop", "Comic Sans MS", cursive; color: var(--ink); }
 :focus-visible { outline: 1.5px solid var(--ink); outline-offset: 6px; }
 
 /* The wall: the whole screen, white fading to a faint grey toward the floor.
@@ -29,10 +29,16 @@ body { font-family: "Inter Tight", "Helvetica Neue", Arial, sans-serif; color: v
   position: absolute; margin: 0;
   left: calc(var(--H) * .08); top: 46%;
   transform: translateY(-50%);
-  font-size: max(10px, calc(var(--H) * .012));
+  font-size: max(13px, calc(var(--H) * .017));
   letter-spacing: .02em;
   color: var(--soft);
   white-space: nowrap;
+}
+
+.place {
+  position: absolute; left: 0; top: 100%; margin: calc(var(--H) * .016) 0 0;
+  font-size: max(11px, calc(var(--H) * .0125));
+  letter-spacing: .02em; color: var(--soft); white-space: nowrap;
 }
 
 /* A piece is just the image or video */
