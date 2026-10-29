@@ -7,7 +7,7 @@
 
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%; overflow: hidden; background: #fff; }
-body { font-family: "Space Mono", ui-monospace, Menlo, monospace; color: var(--ink); }
+body { font-family: "Fragment Mono", ui-monospace, Menlo, monospace; color: var(--ink); }
 :focus-visible { outline: 1.5px solid var(--ink); outline-offset: 6px; }
 
 /* The wall: the whole screen, white fading to a faint grey toward the floor.
@@ -30,10 +30,12 @@ body { font-family: "Space Mono", ui-monospace, Menlo, monospace; color: var(--i
   left: calc(var(--H) * .08); top: 46%;
   transform: translateY(-50%);
   font-size: max(11px, calc(var(--H) * .0135));
-  letter-spacing: .02em;
+  letter-spacing: .08em;
+  text-transform: uppercase;
   color: var(--soft);
   white-space: nowrap;
 }
+.name b { font-weight: 400; color: var(--ink); -webkit-text-stroke: .045em currentColor; paint-order: stroke fill; }
 
 .place {
   position: absolute; left: 0; top: 100%; margin: calc(var(--H) * .016) 0 0;

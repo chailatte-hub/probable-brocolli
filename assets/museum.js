@@ -25,7 +25,7 @@ window.Museum = function (opts) {
   set.className = 'set';
   set.style.paddingLeft = `calc(var(--H) * ${o.lead})`;
   set.style.paddingRight = `calc(var(--H) * ${Math.max(0, o.tail - o.gap)})`;
-  set.innerHTML = `<p class="name">Museum of Chai</p>`;
+  set.innerHTML = `<p class="name" aria-label="Museum of Chai">Museum of <b>Chai</b></p>`;
 
   const columns = [];
   window.COLLECTION.forEach(p => {
@@ -39,13 +39,13 @@ window.Museum = function (opts) {
     const top = o.centre - total / 2 + (col[0].nudge || 0);
     const bay = document.createElement('div');
     bay.className = 'bay';
-    bay.style.cssText = `margin-top:calc(var(--H) * ${top});margin-right:calc(var(--H) * ${o.gap});gap:calc(var(--H) * ${o.stackGap});`;
+    bay.style.cssText = `margin-top:calc(var(--H) * ${top});margin-right:calc(var(--H) * ${col[0].space ?? o.gap});gap:calc(var(--H) * ${o.stackGap});`;
 
     col.forEach(p => {
       const h = p.height || 0.4, w = h * (p.crop || p.ratio || 0.8);
       const el = document.createElement('div');
       el.className = 'piece' + (p.video ? ' moving' : '');
-      el.style.cssText = `width:calc(var(--H) * ${w});height:calc(var(--H) * ${h});--focus:${p.focus || '50% 50%'};`;
+      el.style.cssText = `width:calc(var(--H) * ${w});height:calc(var(--H) * ${h});--focus:${p.focus || '50% 50%'};transform:translateX(calc(var(--H) * ${p.shift || 0}));`;
       el.innerHTML = `
         <button class="art" type="button" aria-label="${label(p)}. View up close">${media(p)}</button>
         ${p.place ? `<p class="place" aria-hidden="true">${p.place}</p>` : ''}
