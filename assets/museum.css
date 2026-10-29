@@ -1,0 +1,99 @@
+:root { --H: 100svh; }
+@supports not (height: 100svh) { :root { --H: 100vh; } }
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; }
+body { font-family: "Inter Tight", "Helvetica Neue", Arial, sans-serif; background: var(--bg); color: var(--ink); }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+/* Room: scrolls sideways, forever */
+.room {
+  height: var(--H);
+  overflow-x: auto; overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+.room::-webkit-scrollbar { display: none; }
+.room:focus-visible { outline: none; }
+.track { display: flex; height: 100%; width: max-content; }
+.set { position: relative; display: flex; align-items: flex-start; height: 100%; flex: none; }
+
+/* The only words on the wall */
+.name {
+  position: absolute; margin: 0;
+  left: calc(var(--H) * .07); top: var(--name-top, 40%);
+  transform: translateY(-50%);
+  font-size: max(10px, calc(var(--H) * .0125));
+  letter-spacing: .02em;
+  color: var(--name);
+  white-space: nowrap;
+}
+
+/* A piece: frame, mat, artwork, and a small plaque */
+.piece { position: relative; flex: none; }
+.frame {
+  display: block; position: relative; border: 0; cursor: zoom-in; font: inherit;
+  width: calc(var(--H) * var(--w)); height: calc(var(--H) * var(--h));
+  padding: var(--frame-w);
+  background: var(--frame-bg);
+  box-shadow: var(--frame-shadow);
+}
+.frame::after { /* glazing */
+  content: ""; position: absolute; inset: var(--frame-w); pointer-events: none;
+  background: linear-gradient(115deg, rgba(255,255,255,.16), rgba(255,255,255,0) 32%, rgba(255,255,255,0) 64%, rgba(255,255,255,.07) 72%, rgba(255,255,255,0) 80%);
+}
+.mat {
+  display: block; width: 100%; height: 100%;
+  padding: var(--mat-w);
+  background: var(--mat);
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,.16), inset -1px -1px 1px rgba(255,255,255,.6);
+}
+.canvas {
+  display: block; position: relative; width: 100%; height: 100%; overflow: hidden; background: #ddd;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.08);
+}
+.canvas > svg, .canvas > img, .canvas > video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.plaque {
+  position: absolute; left: calc(100% + var(--H) * .014); bottom: 0;
+  width: calc(var(--H) * .017); height: calc(var(--H) * .012);
+  background: var(--plaque);
+  box-shadow: 0 1px 1px rgba(0,0,0,.12);
+}
+
+.motion-toggle {
+  position: absolute; right: calc(var(--frame-w) + 5px); bottom: calc(var(--frame-w) + 5px);
+  width: 24px; height: 24px; border-radius: 50%; border: 0; cursor: pointer;
+  background: rgba(0,0,0,.5); color: #fff; display: grid; place-items: center;
+  opacity: 0; transition: opacity .2s;
+}
+.piece:hover .motion-toggle, .motion-toggle:focus-visible, .paused .motion-toggle { opacity: .85; }
+.motion-toggle svg { width: 9px; height: 9px; }
+
+/* Close-up */
+dialog { border: 0; padding: 0; background: transparent; max-width: none; max-height: none; width: 100vw; height: 100svh; }
+dialog::backdrop { background: var(--backdrop); }
+dialog[open] { display: grid; place-items: center; }
+.closeup { display: grid; gap: 18px; justify-items: center; }
+.closeup .frame { cursor: default; width: auto; height: auto; --frame-w: 10px; }
+.closeup .mat { --mat-w: clamp(16px, 3vw, 36px); }
+.closeup .canvas { width: min(76vw, calc(70svh * var(--ratio))); height: auto; aspect-ratio: var(--ratio); }
+.closeup .caption { margin: 0; text-align: center; font-size: 13px; color: var(--ink); display: grid; gap: 2px; }
+.closeup .caption .t { font-size: 15px; }
+.closeup .caption .h { color: var(--name); }
+.close {
+  position: fixed; top: 14px; right: 14px; padding: 8px 14px; border-radius: 999px;
+  border: 1px solid currentColor; background: transparent; color: var(--ink);
+  font: inherit; font-size: 13px; cursor: pointer; opacity: .7;
+}
+.close:hover { opacity: 1; }
+
+/* Placeholder art motion */
+.wave { animation: drift 7s ease-in-out infinite alternate; }
+.wave.w2 { animation-duration: 5.5s; animation-delay: -2s; }
+.wave.w3 { animation-duration: 4.5s; animation-delay: -1s; }
+@keyframes drift { from { transform: translateX(-14px); } to { transform: translateX(14px); } }
+.flake { animation: fall linear infinite; }
+@keyframes fall { from { transform: translateY(-20px); } to { transform: translateY(300px); } }
+.paused .wave, .paused .flake { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .wave, .flake { animation: none; } }
