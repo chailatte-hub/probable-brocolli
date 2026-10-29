@@ -3,163 +3,303 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cheryl Chai</title>
-<meta name="description" content="Cheryl Chai is a product designer at HeyMax, designing how people earn, find and redeem travel rewards.">
+<title>Museum of Cheryl</title>
+<meta name="description" content="A small museum of Cheryl Chai's life, with one artwork for each hobby.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,800;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Hanken+Grotesk:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #EDF1F5;
-    --ink: #17223A;
-    --muted: #5B6679;
-    --line: #C9D2DD;
-    --red: #C8323A;
-    --blue: #2B4C9B;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --paper: #141B2B;
-      --ink: #E6EBF2;
-      --muted: #9AA6B8;
-      --line: #2C3850;
-      --red: #E25A5F;
-      --blue: #6F8FDB;
-    }
+    --wall: #2E4A40;        /* gallery wall green */
+    --wall-deep: #243B33;
+    --gilt: #B8935A;        /* frame */
+    --gilt-dark: #8A6A3B;
+    --card: #F6F4EF;        /* wall label */
+    --ink: #1D1F1E;
+    --soft: #CFD9D3;        /* text on wall */
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: "Schibsted Grotesk", system-ui, sans-serif;
-    font-size: 1.125rem;
+    background: var(--wall);
+    color: var(--soft);
+    font-family: "Hanken Grotesk", system-ui, sans-serif;
+    font-size: 1.0625rem;
     line-height: 1.55;
   }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--gilt); outline-offset: 4px; }
 
-  /* The one bold element: an airmail edge */
-  .airmail {
-    height: 14px;
-    background: repeating-linear-gradient(
-      -45deg,
-      var(--red) 0 22px,
-      transparent 22px 34px,
-      var(--blue) 34px 56px,
-      transparent 56px 68px
-    );
-  }
-
-  .wrap {
-    max-width: 68rem;
+  /* Entrance */
+  .entrance {
+    max-width: 62rem;
     margin: 0 auto;
-    padding: 0 clamp(16px, 5vw, 56px);
-  }
-
-  header.hero {
-    padding: clamp(64px, 14vh, 160px) 0 clamp(48px, 10vh, 112px);
+    padding: clamp(56px, 12vh, 140px) clamp(16px, 5vw, 56px) clamp(40px, 7vh, 80px);
   }
   h1 {
     margin: 0;
-    font-weight: 800;
-    font-size: clamp(3.5rem, 13vw, 10.5rem);
-    line-height: 0.88;
-    letter-spacing: -0.045em;
+    font-family: "Young Serif", Georgia, serif;
+    font-weight: 400;
+    color: #F3EFE6;
+    font-size: clamp(3rem, 10vw, 7.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
   }
-  .intro {
+  .welcome { margin: 1.5rem 0 0; max-width: 40ch; font-size: clamp(1.15rem, 2vw, 1.35rem); }
+  .hours {
     margin: 2rem 0 0;
-    max-width: 34ch;
-    font-size: clamp(1.25rem, 2.4vw, 1.6rem);
-    line-height: 1.35;
+    display: flex; flex-wrap: wrap; gap: 0.5rem 2.5rem;
+    font-size: 0.98rem;
+  }
+  .hours dt { color: var(--gilt); }
+  .hours dd { margin: 0; color: #F3EFE6; }
+  .hours div { display: grid; }
+
+  /* Gallery wall: walk sideways along it */
+  .gallery {
+    display: flex;
+    gap: clamp(48px, 8vw, 120px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: clamp(16px, 8vw, 120px);
+    padding: 24px clamp(16px, 8vw, 120px) 56px;
+    background:
+      linear-gradient(to bottom, transparent calc(100% - 40px), var(--wall-deep) calc(100% - 40px)); /* skirting */
+    scrollbar-color: var(--gilt) transparent;
+  }
+  .gallery::-webkit-scrollbar { height: 8px; }
+  .gallery::-webkit-scrollbar-thumb { background: var(--gilt); border-radius: 4px; }
+
+  .exhibit {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    display: flex;
+    align-items: flex-end;
+    gap: 28px;
+    margin: 0;
+  }
+
+  /* The frame: the one rich thing on the page */
+  .frame {
+    width: clamp(240px, 34vw, 420px);
+    aspect-ratio: 4 / 5;
+    padding: 18px;
+    background: linear-gradient(135deg, #D2B07A, var(--gilt) 40%, var(--gilt-dark));
+    box-shadow:
+      inset 0 0 0 2px rgba(255,255,255,.25),
+      inset 0 0 0 7px rgba(0,0,0,.12),
+      0 26px 40px -18px rgba(0,0,0,.55);
+  }
+  .frame .mat {
+    width: 100%; height: 100%;
+    padding: 9%;
+    background: #EEEAE1;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,.25);
+  }
+  .frame svg, .frame img, .frame video { display: block; overflow: hidden; width: 100%; height: 100%; object-fit: cover; }
+
+  .exhibit.landscape .frame { width: clamp(280px, 44vw, 560px); aspect-ratio: 5 / 4; }
+
+  /* Moving pieces (videos) */
+  .mat { position: relative; }
+  .motion-toggle {
+    position: absolute; right: 10px; bottom: 10px;
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 0; cursor: pointer;
+    background: rgba(29,31,30,.72); color: #F6F4EF;
+    display: grid; place-items: center;
+    font: 600 0.8rem/1 "Hanken Grotesk", sans-serif;
+  }
+  .motion-toggle:hover { background: rgba(29,31,30,.9); }
+  .motion-toggle svg { width: 14px; height: 14px; }
+  .wave { animation: drift 7s ease-in-out infinite alternate; }
+  .wave.w2 { animation-duration: 5.5s; animation-delay: -2s; }
+  .wave.w3 { animation-duration: 4.5s; animation-delay: -1s; }
+  @keyframes drift { from { transform: translateX(-14px); } to { transform: translateX(14px); } }
+  .paused .wave { animation-play-state: paused; }
+  @media (prefers-reduced-motion: reduce) { .wave { animation: none; } }
+
+  /* Museum wall label */
+  .label {
+    width: 220px;
+    margin-bottom: 12%;
+    background: var(--card);
     color: var(--ink);
+    padding: 16px 18px 18px;
+    font-size: 0.92rem;
+    line-height: 1.45;
+    box-shadow: 0 6px 14px -8px rgba(0,0,0,.5);
   }
-  .intro a { color: inherit; text-decoration-color: var(--red); text-underline-offset: 0.18em; text-decoration-thickness: 2px; }
-
-  section { padding: 0 0 clamp(56px, 10vh, 112px); }
-  h2 {
-    margin: 0 0 1.25rem;
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--muted);
+  .label h2 {
+    margin: 0;
+    font-family: "Young Serif", Georgia, serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.2;
   }
+  .label .meta { margin: 0.35rem 0 0.75rem; color: #5C5F5D; font-style: italic; }
+  .label p { margin: 0; }
 
-  .work { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-  .work li {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) auto;
-    gap: 1.5rem;
-    align-items: baseline;
-    padding: 1.4rem 0;
-    border-bottom: 1px solid var(--line);
+  .exhibit.empty .mat {
+    display: grid; place-items: center;
+    background: transparent;
+    box-shadow: none;
+    border: 2px dashed rgba(207,217,211,.5);
   }
-  .work h3 { margin: 0; font-size: 1.5rem; font-weight: 500; letter-spacing: -0.01em; }
-  .work p { margin: 0; color: var(--muted); max-width: 52ch; }
-  .work .status { font-size: 0.95rem; color: var(--muted); font-style: italic; white-space: nowrap; }
+  .exhibit.empty .frame { background: none; box-shadow: none; }
+  .exhibit.empty .mat span { color: var(--soft); font-style: italic; text-align: center; padding: 1rem; }
 
-  .about p { margin: 0 0 1rem; max-width: 60ch; }
+  .walk-hint { max-width: 62rem; margin: 0 auto; padding: 0 clamp(16px, 5vw, 56px) 8px; font-size: 0.95rem; color: var(--soft); }
 
   footer {
-    border-top: 1px solid var(--line);
-    padding: 1.75rem 0 2.5rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem 2rem;
-    justify-content: space-between;
-    color: var(--muted);
-    font-size: 1rem;
+    max-width: 62rem; margin: 0 auto;
+    padding: 40px clamp(16px, 5vw, 56px) 48px;
+    font-size: 0.95rem;
   }
-  footer nav { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  a { color: var(--ink); }
-  a:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 2px; }
 
-  @media (max-width: 720px) {
-    .work li { grid-template-columns: 1fr; gap: 0.4rem; }
+  @media (max-width: 640px) {
+    .exhibit { flex-direction: column; align-items: flex-start; gap: 18px; }
+    .label { margin-bottom: 0; width: min(100%, 300px); }
+    .frame, .exhibit.landscape .frame { width: min(78vw, 340px); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .gallery { scroll-behavior: smooth; }
   }
 </style>
 </head>
 <body>
-  <div class="airmail" aria-hidden="true"></div>
+  <header class="entrance">
+    <h1>Museum of Cheryl</h1>
+    <p class="welcome">A small, permanent collection of the things I love doing. One room, one wall, a new piece whenever I pick up something new.</p>
+    <dl class="hours">
+      <div><dt>Opening hours</dt><dd>Always open</dd></div>
+      <div><dt>Admission</dt><dd>Free</dd></div>
+      <div><dt>Curator</dt><dd>Cheryl Chai</dd></div>
+    </dl>
+  </header>
 
-  <div class="wrap">
-    <header class="hero">
-      <h1>Cheryl<br>Chai</h1>
-      <p class="intro">Product designer at <a href="https://heymax.ai">HeyMax</a>. I design how people earn miles, find flights and turn rewards into trips.</p>
-    </header>
+  <p class="walk-hint" id="walk-hint">Scroll sideways to walk along the wall.</p>
 
-    <section aria-labelledby="work-title">
-      <h2 id="work-title">Selected work</h2>
-      <ul class="work">
-        <li>
-          <h3>HeyMax First</h3>
-          <p>A tiered membership, from the first upsell to the everyday perks.</p>
-          <span class="status">Case study soon</span>
-        </li>
-        <li>
-          <h3>Flight search</h3>
-          <p>Finding award seats without needing to know how award seats work.</p>
-          <span class="status">Case study soon</span>
-        </li>
-        <li>
-          <h3>Miles redemption</h3>
-          <p>Moving rewards to airline partners in as few steps as possible.</p>
-          <span class="status">Case study soon</span>
-        </li>
-      </ul>
-    </section>
+  <main class="gallery" tabindex="0" aria-describedby="walk-hint" aria-label="Gallery wall">
 
-    <section class="about" aria-labelledby="about-title">
-      <h2 id="about-title">About</h2>
-      <p>I work on the BOOST team at HeyMax, where loyalty programs meet everyday spending.</p>
-      <p>Most of my work lives in the small moments: an empty state that tells you what to do next, a confirmation that makes a redemption feel finished.</p>
-    </section>
+    <!-- To use your own photo: replace the <svg>…</svg> inside .mat with
+         <img src="images/colour-analysis.jpg" alt="Describe the photo"> -->
+    <figure class="exhibit">
+      <div class="frame"><div class="mat">
+        <svg viewBox="0 0 200 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Four columns of colour swatches, one for each season">
+          <g>
+            <rect x="0"   y="0"   width="50" height="62.5" fill="#F7C59F"/><rect x="0"   y="62.5" width="50" height="62.5" fill="#F29E7D"/>
+            <rect x="0"   y="125" width="50" height="62.5" fill="#B8D98A"/><rect x="0"   y="187.5" width="50" height="62.5" fill="#F2D16B"/>
+            <rect x="50"  y="0"   width="50" height="62.5" fill="#C9D4E8"/><rect x="50"  y="62.5" width="50" height="62.5" fill="#D9AFC0"/>
+            <rect x="50"  y="125" width="50" height="62.5" fill="#9FB4C7"/><rect x="50"  y="187.5" width="50" height="62.5" fill="#B9A9CF"/>
+            <rect x="100" y="0"   width="50" height="62.5" fill="#C1652F"/><rect x="100" y="62.5" width="50" height="62.5" fill="#7A6A2E"/>
+            <rect x="100" y="125" width="50" height="62.5" fill="#D99A3D"/><rect x="100" y="187.5" width="50" height="62.5" fill="#5E3B27"/>
+            <rect x="150" y="0"   width="50" height="62.5" fill="#1F2A5A"/><rect x="150" y="62.5" width="50" height="62.5" fill="#B0123B"/>
+            <rect x="150" y="125" width="50" height="62.5" fill="#F4F6F8"/><rect x="150" y="187.5" width="50" height="62.5" fill="#0F5E4E"/>
+          </g>
+        </svg>
+      </div></div>
+      <figcaption class="label">
+        <h2>Four Seasons</h2>
+        <p class="meta">Colour analysis, ongoing</p>
+        <p>Spring, summer, autumn, winter. A study in which colours make a face light up, and which ones quietly take over.</p>
+      </figcaption>
+    </figure>
 
-    <footer>
-      <span>© 2026 Cheryl Chai</span>
-      <nav aria-label="Contact">
-        <a href="mailto:hello@cherylchai.com">Email</a>
-        <a href="https://www.linkedin.com/">LinkedIn</a>
-      </nav>
-    </footer>
-  </div>
+    <!-- Moving piece. To use your own clip, replace the <svg>…</svg> with:
+         <video src="videos/surfing.mp4" poster="images/surfing-poster.jpg"
+                autoplay muted loop playsinline aria-label="Describe the clip"></video>
+         Keep the button: it pauses videos too. -->
+    <figure class="exhibit landscape moving">
+      <div class="frame"><div class="mat">
+        <svg viewBox="0 0 250 200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ocean waves rolling under a pale sun">
+          <rect width="250" height="200" fill="#F3E3C6"/>
+          <circle cx="190" cy="52" r="24" fill="#F2B66B"/>
+          <path class="wave" d="M-20 110 Q 10 90 40 110 T 100 110 T 160 110 T 220 110 T 280 105 V200 H-20Z" fill="#7FB7C9"/>
+          <path class="wave w2" d="M-20 132 Q 15 108 50 132 T 120 132 T 190 132 T 270 128 V200 H-20Z" fill="#3F86A3"/>
+          <path class="wave w3" d="M-20 158 Q 20 130 60 158 T 140 158 T 220 158 T 280 154 V200 H-20Z" fill="#1E5A78"/>
+        </svg>
+        <button class="motion-toggle" type="button" aria-label="Pause">
+          <svg viewBox="0 0 14 14" aria-hidden="true"><rect x="2" y="1" width="3.5" height="12" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" fill="currentColor"/></svg>
+        </button>
+      </div></div>
+      <figcaption class="label">
+        <h2>Waiting for a Set</h2>
+        <p class="meta">Surfing, moving image, looped</p>
+        <p>Most of surfing is sitting and watching the horizon. This piece is about the patience, and the one wave that makes it worth it.</p>
+      </figcaption>
+    </figure>
+
+    <figure class="exhibit">
+      <div class="frame"><div class="mat">
+        <svg viewBox="0 0 200 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="A snowy mountain slope with a single carved line down it">
+          <rect width="200" height="250" fill="#CFE0EE"/>
+          <path d="M0 120 L70 40 L110 85 L150 30 L200 95 V250 H0Z" fill="#F7FAFC"/>
+          <path d="M70 40 L82 54 L64 66 Z M150 30 L162 45 L140 52 Z" fill="#B7C9D9"/>
+          <path d="M150 60 C 90 100, 170 140, 100 175 S 60 225, 40 250" fill="none" stroke="#2C3E66" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div></div>
+      <figcaption class="label">
+        <h2>First Tracks</h2>
+        <p class="meta">Snowboarding, fresh powder</p>
+        <p>One line down an untouched slope. Made early in the morning, gone by lunch.</p>
+      </figcaption>
+    </figure>
+
+    <figure class="exhibit empty">
+      <div class="frame"><div class="mat"><span>This space is reserved for the next hobby.</span></div></div>
+      <figcaption class="label">
+        <h2>Untitled</h2>
+        <p class="meta">Acquisition pending</p>
+        <p>The collection grows whenever I start something new.</p>
+      </figcaption>
+    </figure>
+  </main>
+
+  <footer>
+    <p>Museum of Cheryl, cherylchai.com</p>
+  </footer>
+
+<script>
+(() => {
+  const gallery = document.querySelector('.gallery');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const PLAY = '<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1 L12 7 L3 13Z" fill="currentColor"/></svg>';
+  const PAUSE = '<svg viewBox="0 0 14 14" aria-hidden="true"><rect x="2" y="1" width="3.5" height="12" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" fill="currentColor"/></svg>';
+
+  // Vertical mouse wheel walks you along the wall, until you reach either end.
+  gallery.addEventListener('wheel', e => {
+    if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+    const max = gallery.scrollWidth - gallery.clientWidth;
+    const atStart = gallery.scrollLeft <= 0 && e.deltaY < 0;
+    const atEnd = gallery.scrollLeft >= max - 1 && e.deltaY > 0;
+    if (atStart || atEnd) return;
+    e.preventDefault();
+    gallery.scrollBy({ left: e.deltaY, behavior: 'auto' });
+  }, { passive: false });
+
+  // Moving pieces: one pause button each; play only while on screen.
+  document.querySelectorAll('.exhibit.moving').forEach(piece => {
+    const btn = piece.querySelector('.motion-toggle');
+    const video = piece.querySelector('video');
+    let userPaused = reduce;
+
+    const set = playing => {
+      piece.classList.toggle('paused', !playing);
+      if (video) playing ? video.play().catch(() => {}) : video.pause();
+      btn.innerHTML = playing ? PAUSE : PLAY;
+      btn.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+    };
+    set(!userPaused);
+
+    btn.addEventListener('click', () => { userPaused = !userPaused; set(!userPaused); });
+
+    new IntersectionObserver(([entry]) => {
+      if (!userPaused) set(entry.isIntersecting);
+    }, { root: gallery, threshold: 0.4 }).observe(piece);
+  });
+})();
+</script>
 </body>
 </html>
