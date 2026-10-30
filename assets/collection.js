@@ -59,8 +59,8 @@ window.COLLECTION = [
   { video: "assets/art/hk-photobooth-strip.mp4", poster: "assets/art/hk-photobooth-strip-poster.jpg", ratio: 0.6704, crop: 0.6704, focus: "50% 50%", height: 0.42, nudge: -0.06, space: 0.11,
     place: "Hong Kong, 2026", month: "May", tags: ["photobooth"] },
 
-  { image: "assets/art/macritchie-1.jpg", ratio: 1.5, crop: 1.25, focus: "52% 45%", height: 0.28, nudge: 0.10, space: 0.11,
-    more: [{ image: "assets/art/macritchie-2.jpg", ratio: 1.5 }, { image: "assets/art/macritchie-3.jpg", ratio: 1.5 }, { image: "assets/art/macritchie-4.jpg", ratio: 1.5 }],
+  { image: "assets/art/macritchie-2.jpg", ratio: 1.5, crop: 1.25, focus: "52% 45%", height: 0.28, nudge: 0.10, space: 0.11,
+    more: [{ image: "assets/art/macritchie-1.jpg", ratio: 1.5 }, { image: "assets/art/macritchie-3.jpg", ratio: 1.5 }, { image: "assets/art/macritchie-4.jpg", ratio: 1.5 }],
     place: "MacRitchie, 2026", month: "May", tags: ["xrickie", "ricohgriii"] },
 
   { video: "assets/art/shuv-club.mp4", poster: "assets/art/shuv-club-poster.jpg", ratio: 0.5625, crop: 0.7, focus: "50% 60%", height: 0.46, nudge: -0.05, space: 0.11,
