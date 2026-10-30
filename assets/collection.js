@@ -169,14 +169,17 @@ window.COLLECTION = [
   { image: "assets/art/surfing.jpg",       ratio: 0.6667, crop: 0.80, focus: "40% 55%", height: 0.46, nudge: 0.08, space: 0.11,
     place: "Wakesurfing, 2023" },
 
+  { image: "assets/art/hike-hangs-1.jpg", ratio: 1.5088, crop: 1.4, focus: "45% 55%", height: 0.23, nudge: 0.04, space: 0.11,
+    more: [{ image: "assets/art/hike-hangs-2.jpg", ratio: 1.5088 }],
+    place: "2023", note: "hike and hangs", tags: ["film", "pentaxespio"] },
+
+  { image: "assets/art/cutie-pals.jpg", ratio: 1.5088, crop: 1.4, focus: "40% 55%", height: 0.20, stack: true, shift: 0.035,
+    place: "2023", note: "cutie pals", tags: ["film", "pentaxespio"] },
+
   { image: "assets/art/italy-dancers.jpg", ratio: 1.7822, crop: 1.25, focus: "52% 50%", height: 0.22, nudge: -0.07, space: 0.12,
     place: "Italy, 2023" },
   { image: "assets/art/italy-food.jpg",    ratio: 1.7822, crop: 1.50, focus: "30% 60%", height: 0.18, stack: true, shift: 0.045,
     place: "Italy, 2023" },
-
-  { image: "assets/art/hike-hangs-1.jpg", ratio: 1.5088, crop: 1.4, focus: "45% 55%", height: 0.27, nudge: 0.08, space: 0.11,
-    more: [{ image: "assets/art/hike-hangs-2.jpg", ratio: 1.5088 }],
-    place: "2023", note: "hike and hangs", tags: ["film", "pentaxespio"] },
 
   { image: "assets/art/photobooth-ting-1.jpg", ratio: 0.6667, crop: 0.75, focus: "45% 35%", height: 0.44, nudge: -0.05, space: 0.11,
     more: [{ image: "assets/art/photobooth-ting-2.jpg", ratio: 0.6667 }],
