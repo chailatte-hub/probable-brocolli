@@ -18,36 +18,6 @@
   html, body { height: auto; overflow: auto; }
   body { background: #fff; }
 
-  .bar {
-    position: sticky; top: 0; z-index: 5;
-    display: flex; align-items: center; justify-content: space-between; gap: 16px;
-    padding: 22px clamp(16px, 4vw, 56px);
-    background: rgba(255,255,255,.94);
-    backdrop-filter: blur(6px);
-  }
-  h1 {
-    margin: 0; font-weight: 400; font-size: 13px;
-    letter-spacing: .08em; text-transform: uppercase;
-  }
-  .tools { display: flex; align-items: center; gap: clamp(14px, 2.5vw, 28px); font-size: 12px; }
-  .tools a { color: var(--soft); text-decoration: none; }
-  .tools a:hover { color: var(--ink); }
-
-  .year {
-    position: relative; display: inline-flex; align-items: center;
-  }
-  .year select {
-    appearance: none; -webkit-appearance: none;
-    font: inherit; font-size: 12px; color: var(--ink);
-    background: transparent; border: 0; border-bottom: 1px solid var(--ink);
-    padding: 2px 18px 2px 0; border-radius: 0; cursor: pointer;
-  }
-  .year::after { /* small caret */
-    content: ""; position: absolute; right: 2px; top: 50%; width: 5px; height: 5px;
-    border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
-    transform: translateY(-70%) rotate(45deg); pointer-events: none;
-  }
-
   /* Tight masonry: columns filled in order, shortest first, so it reads newest to oldest */
   .grid {
     display: flex; align-items: flex-start;
@@ -71,7 +41,7 @@
 </style>
 </head>
 <body>
-<header class="bar">
+<header class="bar solid">
   <h1>Archive</h1>
   <nav class="tools" aria-label="Archive">
     <label class="year">

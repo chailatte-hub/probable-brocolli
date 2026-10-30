@@ -38,13 +38,38 @@ body { font-family: "Fragment Mono", ui-monospace, Menlo, monospace; color: var(
 .name b { font-weight: 400; color: var(--ink); -webkit-text-stroke: .045em currentColor; paint-order: stroke fill; }
 
 
-/* Quiet link in the top-right corner */
-.corner {
-  position: fixed; top: calc(var(--H) * .035); right: calc(var(--H) * .05); z-index: 3;
-  font-size: max(10px, calc(var(--H) * .0125)); letter-spacing: .02em;
-  color: var(--soft); text-decoration: none;
+/* Top navigation, shared by the museum and the archive */
+.bar {
+  position: sticky; top: 0; z-index: 5;
+  min-height: 66px; box-sizing: border-box;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 22px clamp(16px, 4vw, 56px);
 }
-.corner:hover { color: var(--ink); }
+.bar h1 {
+  margin: 0; font-weight: 400; font-size: 13px;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.tools { display: flex; align-items: center; gap: clamp(14px, 2.5vw, 28px); font-size: 12px; }
+.tools a { color: var(--soft); text-decoration: none; }
+.tools a:hover { color: var(--ink); }
+
+.year {
+  position: relative; display: inline-flex; align-items: center;
+}
+.year select {
+  appearance: none; -webkit-appearance: none;
+  font: inherit; font-size: 12px; color: var(--ink);
+  background: transparent; border: 0; border-bottom: 1px solid var(--ink);
+  padding: 2px 18px 2px 0; border-radius: 0; cursor: pointer;
+}
+.year::after { /* small caret */
+  content: ""; position: absolute; right: 2px; top: 50%; width: 5px; height: 5px;
+  border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+  transform: translateY(-70%) rotate(45deg); pointer-events: none;
+}
+.bar.solid { background: rgba(255,255,255,.94); backdrop-filter: blur(6px); }
+.bar.float { position: fixed; left: 0; right: 0; background: transparent; pointer-events: none; }
+.bar.float a { pointer-events: auto; }
 
 /* A piece is just the image or video */
 .bay { display: flex; flex-direction: column; align-items: center; flex: none; }
