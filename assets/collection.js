@@ -80,6 +80,9 @@ window.COLLECTION = [
   { video: "assets/art/japan-2026.mp4", poster: "assets/art/japan-2026-poster.jpg", ratio: 0.5625, crop: 0.7, focus: "50% 40%", height: 0.44, nudge: -0.05, space: 0.11,
     place: "Japan, 2026", month: "Jan" },
 
+  { video: "assets/art/seoul-photobooth.mp4", poster: "assets/art/seoul-photobooth-poster.jpg", ratio: 0.6667, crop: 0.6667, focus: "50% 50%", height: 0.42, nudge: -0.05, space: 0.11,
+    place: "Seoul, 2025", month: "Nov", tags: ["photobooth"] },
+
   { image: "assets/art/party-julhan.jpg", ratio: 0.8231, crop: 0.8231, focus: "50% 50%", height: 0.34, nudge: 0.07, space: 0.09,
     place: "2025", month: "Nov", note: "party for julhan", tags: ["Polaroid", "itypefilm"] },
 
