@@ -38,6 +38,14 @@ body { font-family: "Fragment Mono", ui-monospace, Menlo, monospace; color: var(
 .name b { font-weight: 400; color: var(--ink); -webkit-text-stroke: .045em currentColor; paint-order: stroke fill; }
 
 
+/* Quiet link in the top-right corner */
+.corner {
+  position: fixed; top: calc(var(--H) * .035); right: calc(var(--H) * .05); z-index: 3;
+  font-size: max(10px, calc(var(--H) * .0125)); letter-spacing: .02em;
+  color: var(--soft); text-decoration: none;
+}
+.corner:hover { color: var(--ink); }
+
 /* A piece is just the image or video */
 .bay { display: flex; flex-direction: column; align-items: center; flex: none; }
 .piece { position: relative; flex: none; }

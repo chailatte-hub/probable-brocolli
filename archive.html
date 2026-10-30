@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>archive</title>
+<meta name="description" content="Archive, Museum of Chai">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32-dark.png" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/museum.css">
+<style>
+  html, body { height: auto; overflow: auto; }
+  body { background: #fff; }
+
+  .bar {
+    position: sticky; top: 0; z-index: 5;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 22px clamp(16px, 4vw, 56px);
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(6px);
+  }
+  h1 {
+    margin: 0; font-weight: 400; font-size: 13px;
+    letter-spacing: .08em; text-transform: uppercase;
+  }
+  .tools { display: flex; align-items: center; gap: clamp(14px, 2.5vw, 28px); font-size: 12px; }
+  .tools a { color: var(--soft); text-decoration: none; }
+  .tools a:hover { color: var(--ink); }
+
+  .year {
+    position: relative; display: inline-flex; align-items: center;
+  }
+  .year select {
+    appearance: none; -webkit-appearance: none;
+    font: inherit; font-size: 12px; color: var(--ink);
+    background: transparent; border: 0; border-bottom: 1px solid var(--ink);
+    padding: 2px 18px 2px 0; border-radius: 0; cursor: pointer;
+  }
+  .year::after { /* small caret */
+    content: ""; position: absolute; right: 2px; top: 50%; width: 5px; height: 5px;
+    border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+    transform: translateY(-70%) rotate(45deg); pointer-events: none;
+  }
+
+  /* Tight masonry: columns filled in order, shortest first, so it reads newest to oldest */
+  .grid {
+    display: flex; align-items: flex-start;
+    gap: clamp(10px, 1.6vw, 24px);
+    padding: clamp(8px, 2vw, 24px) clamp(16px, 4vw, 56px) 64px;
+  }
+  .col { flex: 1; display: flex; flex-direction: column; gap: clamp(10px, 1.6vw, 24px); min-width: 0; }
+  .tile {
+    display: block; width: 100%; padding: 0; border: 0; cursor: zoom-in; background: #EEE;
+    aspect-ratio: var(--ratio);
+  }
+  .tile > img, .tile > video {
+    display: block; width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(1); transition: filter .4s ease;
+  }
+  .tile:hover > img, .tile:hover > video, .tile:focus-visible > img, .tile:focus-visible > video { filter: grayscale(0); }
+
+  .empty { padding: 0 clamp(16px, 4vw, 56px); color: var(--soft); font-size: 12px; }
+
+  @media (prefers-reduced-motion: reduce) { .tile > img, .tile > video { transition: none; } }
+</style>
+</head>
+<body>
+<header class="bar">
+  <h1>Archive</h1>
+  <nav class="tools" aria-label="Archive">
+    <label class="year">
+      <span class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Filter by year</span>
+      <select id="year"><option value="">All years</option></select>
+    </label>
+    <a href="./">Back to museum</a>
+  </nav>
+</header>
+
+<main>
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty" hidden>Nothing from that year yet.</p>
+</main>
+
+<dialog id="closeup" aria-label="Artwork up close">
+  <button class="close" type="button" id="close">Close</button>
+  <div class="closeup" id="closeup-body"></div>
+</dialog>
+
+<script src="assets/collection.js"></script>
+<script>
+(() => {
+  const items = window.COLLECTION.map(p => ({ ...p, year: (String(p.place || '').match(/\d{4}/) || [''])[0] }));
+  const grid = document.getElementById('grid');
+  const empty = document.getElementById('empty');
+  const select = document.getElementById('year');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Year options, newest first
+  [...new Set(items.map(p => p.year).filter(Boolean))].sort((a, b) => b - a)
+    .forEach(y => select.insertAdjacentHTML('beforeend', `<option value="${y}">${y}</option>`));
+
+  // Remember ?year= in the address so a filtered view can be shared
+  const params = new URLSearchParams(location.search);
+  if (params.get('year')) select.value = params.get('year');
+
+  const label = p => [p.place, p.note].filter(Boolean).join('. ') || 'Artwork';
+  const media = (p, big) => p.video
+    ? `<video src="${p.video}" ${p.poster ? `poster="${p.poster}"` : ''} muted loop playsinline ${big ? 'controls' : 'autoplay aria-hidden="true"'}></video>`
+    : `<img src="${p.image}" alt="" ${big ? '' : 'loading="lazy" decoding="async"'}>`;
+
+  const colCount = () => innerWidth < 600 ? 2 : innerWidth < 1000 ? 3 : 4;
+
+  function render() {
+    const shown = items.filter(p => !select.value || p.year === select.value);
+    empty.hidden = shown.length > 0;
+    const n = colCount();
+    const cols = Array.from({ length: n }, () => ({ el: Object.assign(document.createElement('div'), { className: 'col' }), h: 0 }));
+    shown.forEach(p => {
+      const target = cols.reduce((a, b) => (b.h < a.h - 0.001 ? b : a));   // shortest column, leftmost on ties
+      const btn = document.createElement('button');
+      btn.className = 'tile'; btn.type = 'button';
+      btn.style.setProperty('--ratio', p.ratio || 0.8);
+      btn.setAttribute('aria-label', label(p) + '. View up close');
+      btn.innerHTML = media(p);
+      btn.addEventListener('click', () => open(p));
+      target.el.appendChild(btn);
+      target.h += 1 / (p.ratio || 0.8);
+    });
+    grid.replaceChildren(...cols.map(c => c.el));
+  }
+
+  select.addEventListener('change', () => {
+    const url = new URL(location.href);
+    select.value ? url.searchParams.set('year', select.value) : url.searchParams.delete('year');
+    history.replaceState(null, '', url);
+    render();
+  });
+  let lastN = colCount();
+  addEventListener('resize', () => { if (colCount() !== lastN) { lastN = colCount(); render(); } });
+  render();
+
+  // Up close, in colour, with place and note
+  const dlg = document.getElementById('closeup');
+  const body = document.getElementById('closeup-body');
+  function open(p) {
+    body.innerHTML = `
+      <div class="big" style="--ratio:${p.ratio || 0.8}">${media(p, true)}</div>
+      ${p.note || p.place ? `<p class="caption">${p.note ? `<span class="t">${p.note}</span>` : ''}${p.place ? `<span class="h">${p.place}</span>` : ''}</p>` : ''}`;
+    const v = body.querySelector('video'); if (v && !reduce) v.play().catch(() => {});
+    dlg.showModal();
+  }
+  document.getElementById('close').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', e => { if (e.target === dlg || e.target === body) dlg.close(); });
+  dlg.addEventListener('close', () => { body.innerHTML = ''; });
+})();
+</script>
+</body>
+</html>
