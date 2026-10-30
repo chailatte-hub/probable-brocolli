@@ -176,6 +176,10 @@ window.COLLECTION = [
   { image: "assets/art/cutie-pals.jpg", ratio: 1.5088, crop: 1.4, focus: "40% 55%", height: 0.20, stack: true, shift: 0.035,
     place: "2023", note: "cutie pals", tags: ["film", "pentaxespio"] },
 
+  { image: "assets/art/we-be-exploring-1.jpg", ratio: 1.5088, crop: 1.35, focus: "50% 55%", height: 0.27, nudge: -0.07, space: 0.11,
+    more: [{ image: "assets/art/we-be-exploring-2.jpg", ratio: 1.5088 }],
+    place: "2023", note: "we be exploring", tags: ["film", "pentaxespio"] },
+
   { image: "assets/art/italy-dancers.jpg", ratio: 1.7822, crop: 1.25, focus: "52% 50%", height: 0.22, nudge: -0.07, space: 0.12,
     place: "Italy, 2023" },
   { image: "assets/art/italy-food.jpg",    ratio: 1.7822, crop: 1.50, focus: "30% 60%", height: 0.18, stack: true, shift: 0.045,
