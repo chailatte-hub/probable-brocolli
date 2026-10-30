@@ -125,6 +125,9 @@ window.COLLECTION = [
     more: [{ image: "assets/art/beijing-blossom-2.jpg", ratio: 0.6667 }, { image: "assets/art/beijing-blossom-3.jpg", ratio: 0.6667 }, { image: "assets/art/beijing-blossom-4.jpg", ratio: 0.6667 }],
     place: "Beijing, 2025", month: "Mar", note: "cherry blossoming in beijing", tags: ["xrickie", "ricohgriii"] },
 
+  { video: "assets/art/acting-my-age.mp4", poster: "assets/art/acting-my-age-poster.jpg", ratio: 0.5625, crop: 0.7, focus: "50% 50%",
+    place: "Qingdao, 2025", month: "Mar", note: "Acting my age" },
+
   { image: "assets/art/japan-street.jpg",  ratio: 1.5038, crop: 1.40, focus: "55% 50%", height: 0.20, nudge: 0.06, space: 0.12,
     place: "Japan, 2025", month: "Jan" },
   { image: "assets/art/japan-wako.jpg",    ratio: 0.6650, crop: 1.00, focus: "52% 42%", height: 0.24, stack: true, shift: -0.035,
