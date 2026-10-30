@@ -20,7 +20,7 @@
 window.COLLECTION = [
   { image: "assets/art/pangkor-laut-1.jpg", ratio: 0.6667, crop: 0.80, focus: "40% 62%", height: 0.46, nudge: 0.07, space: 0.12,
     more: [{ image: "assets/art/pangkor-laut-2.jpg", ratio: 1.5 }, { image: "assets/art/pangkor-laut-3.jpg", ratio: 1.5 }],
-    place: "Pangkor Laut, 2026", month: "Aug", tags: ["rickie", "ricohgriii"] },
+    place: "Pangkor Laut, 2026", month: "Aug", tags: ["xrickie", "ricohgriii"] },
 
   { image: "assets/art/bangkok-2026-1.jpg", ratio: 1.5088, crop: 1.35, focus: "45% 50%", height: 0.30, nudge: -0.05, space: 0.11,
     more: [{ image: "assets/art/bangkok-2026-2.jpg", ratio: 1.5088 }, { image: "assets/art/bangkok-2026-3.jpg", ratio: 1.5088 }],
@@ -28,11 +28,11 @@ window.COLLECTION = [
 
   { image: "assets/art/gyeongju-1.jpg", ratio: 0.6667, crop: 0.80, focus: "50% 55%", height: 0.40, nudge: -0.07, space: 0.11,
     more: [{ image: "assets/art/gyeongju-2.jpg", ratio: 1.5 }, { image: "assets/art/gyeongju-3.jpg", ratio: 1.5 }],
-    place: "Gyeongju, 2026", month: "May", tags: ["rickie", "ricohgriii"] },
+    place: "Gyeongju, 2026", month: "May", tags: ["xrickie", "ricohgriii"] },
 
   { image: "assets/art/macritchie-1.jpg", ratio: 1.5, crop: 1.25, focus: "52% 45%", height: 0.28, nudge: 0.10, space: 0.11,
     more: [{ image: "assets/art/macritchie-2.jpg", ratio: 1.5 }, { image: "assets/art/macritchie-3.jpg", ratio: 1.5 }, { image: "assets/art/macritchie-4.jpg", ratio: 1.5 }],
-    place: "MacRitchie, 2026", month: "May", tags: ["rickie", "ricohgriii"] },
+    place: "MacRitchie, 2026", month: "May", tags: ["xrickie", "ricohgriii"] },
 
   { image: "assets/art/snowboarding.jpg",  ratio: 0.5622, crop: 0.75, focus: "50% 42%", height: 0.50, nudge: -0.06,
     place: "Aizu, 2026",         note: "The one where I couldn't stop screaming." },
@@ -50,7 +50,7 @@ window.COLLECTION = [
 
   { image: "assets/art/secret-santa-1.jpg", ratio: 1.5, crop: 1.35, focus: "50% 50%", height: 0.30, nudge: -0.09, space: 0.12,
     more: [{ image: "assets/art/secret-santa-2.jpg", ratio: 1.5 }],
-    place: "2025", month: "Nov", note: "Annual Secret Santa. Always a good time", tags: ["ricohgriii", "rickie"] },
+    place: "2025", month: "Nov", note: "Annual Secret Santa. Always a good time", tags: ["ricohgriii", "xrickie"] },
 
   { image: "assets/art/japan-street.jpg",  ratio: 1.5038, crop: 1.40, focus: "55% 50%", height: 0.20, nudge: 0.06, space: 0.12,
     place: "Japan, 2025", month: "Jan" },
@@ -60,8 +60,11 @@ window.COLLECTION = [
   { image: "assets/art/bangkok-cases.jpg", ratio: 0.6650, crop: 0.80, focus: "45% 55%", height: 0.36, nudge: -0.11, space: 0.08,
     place: "Bangkok, 2024",      note: "Ugly phone cases." },
 
-  { image: "assets/art/rickie-pottery.jpg", ratio: 1.5, crop: 1.4, focus: "55% 50%", height: 0.28, nudge: 0.06, space: 0.11,
-    place: "2023", month: "Jun", note: "birth of rickie at pottery", tags: ["rickie", "ricohgriii"] },
+  { image: "assets/art/rickie-pottery.jpg", ratio: 1.5, crop: 1.4, focus: "55% 50%", height: 0.22, nudge: 0.03, space: 0.11,
+    place: "2023", month: "Jun", note: "birth of rickie at pottery", tags: ["xrickie", "ricohgriii"] },
+
+  { image: "assets/art/wet-plate.jpg", ratio: 1.5, crop: 1.35, focus: "50% 45%", height: 0.20, stack: true, shift: -0.03,
+    place: "2023", month: "Jun", note: "wet plate photograph (semi annual birthday self portrait)", tags: ["xrickie", "ricohgriii"] },
 
   { image: "assets/art/surfing.jpg",       ratio: 0.6667, crop: 0.80, focus: "40% 55%", height: 0.46, nudge: 0.08, space: 0.11,
     place: "Wakesurfing, 2023" },
