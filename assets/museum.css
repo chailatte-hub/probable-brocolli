@@ -35,7 +35,7 @@ body { font-family: "Fragment Mono", ui-monospace, Menlo, monospace; color: var(
   color: var(--soft);
   white-space: nowrap;
 }
-.name b { font-weight: 400; color: var(--ink); -webkit-text-stroke: .045em currentColor; paint-order: stroke fill; }
+.name b { font-weight: 400; color: var(--ink); }
 
 
 /* Top navigation, shared by the museum and the archive */
