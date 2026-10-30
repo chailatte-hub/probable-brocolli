@@ -5,8 +5,8 @@
 window.Museum = function (opts) {
   const o = Object.assign({
     centre: 0.46,   // eye level: where the middle of each column sits, share of screen height
-    gap: 0.05,      // space between columns, share of screen height
-    stackGap: 0.03, // space between stacked pieces
+    gap: 0.065,     // space between columns, share of screen height
+    stackGap: 0.04, // space between stacked pieces
     lead: 0.30,     // space before the first piece (where the name sits)
     tail: 0.30,     // space after the last piece
     top: 0.09,      // keep art below the navigation…
@@ -53,17 +53,23 @@ window.Museum = function (opts) {
     p.height = shape === 'portrait' ? between(0.30, 0.35) : shape === 'square' ? between(0.24, 0.28) : c >= 1.6 ? between(0.18, 0.21) : between(0.20, 0.24);
     p.shift = between(-0.025, 0.025);
   });
-  // Mostly two per column; now and then a single piece (hung larger), rarely three.
+  // Column rhythm like 2 1 1 2 1 2 1 3 2: ones and twos mixed, never long runs of the same,
+  // and three only when the next three pieces are all landscapes.
   const columns = [];
-  let col = [], used = 0, want = 2;
-  const pickWant = () => { const x = rnd(); return x < 0.18 ? 1 : x < 0.90 ? 2 : 3; };
-  want = pickWant();
-  pieces.forEach(p => {
-    const need = (col.length ? o.stackGap : 0) + p.height;
-    if (col.length && (col.length >= want || used + need > band)) { columns.push(col); col = []; used = 0; want = pickWant(); }
-    used += (col.length ? o.stackGap : 0) + p.height; col.push(p);
-  });
-  if (col.length) columns.push(col);
+  const isLand = p => shapeOf(p.crop || p.ratio || 0.8) === 'landscape';
+  const fits = list => list.reduce((a, p) => a + p.height, 0) + o.stackGap * (list.length - 1) <= band;
+  let i = 0, last = [];
+  while (i < pieces.length) {
+    const run2 = last.slice(-2).every(n => n === 2) && last.length >= 2;
+    const run1 = last.slice(-2).every(n => n === 1) && last.length >= 2;
+    let n = rnd() < 0.45 ? 1 : 2;
+    if (run2) n = 1; else if (run1) n = 2;
+    const three = pieces.slice(i, i + 3);
+    if (three.length === 3 && three.every(isLand) && fits(three) && rnd() < 0.5 && last[last.length - 1] !== 3) n = 3;
+    n = Math.min(n, pieces.length - i);
+    while (n > 1 && !fits(pieces.slice(i, i + n))) n--;
+    columns.push(pieces.slice(i, i + n)); last.push(n); i += n;
+  }
   columns.forEach(c => { if (c.length === 1) c[0].height = Math.min(band * 0.62, c[0].height * 1.45); });
 
   /* ── Build the wall: pieces hang in columns; a "stack" piece joins the column before it ── */
