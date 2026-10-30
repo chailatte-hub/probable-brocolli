@@ -29,23 +29,13 @@ window.Museum = function (opts) {
   }));
 
   /* ── 2. Tumblr posts, hung automatically ──
-     The hang is shuffled on every visit: which pieces pair up, their sizes and heights. */
-  let seed = (Math.random() * 2147483647) | 0;   // a fresh hang on every visit
+     Same "random" every visit (seeded), so the wall always looks the same. */
+  let seed = 20260430;
   const rnd = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
   const between = (a, b) => a + (b - a) * rnd();
   const shapeOf = r => r < 0.9 ? 'portrait' : r <= 1.15 ? 'square' : 'landscape';
   const cropFor = r => shapeOf(r) === 'portrait' ? 0.8 : shapeOf(r) === 'square' ? 1 : Math.min(r, [1.25, 1.4, 1.5][Math.floor(rnd() * 3)]);
 
-  /* Hand-hung pieces: keep their crop and focus, but size, height and pairing are random each visit */
-  { let sg = 1;
-    pieces.forEach(p => {
-      delete p.stack; delete p.shift;
-      const c = p.crop || p.ratio || 0.8;
-      p.height = c > 1.15 ? between(0.24, 0.32) : c >= 0.78 ? between(0.30, 0.38) : between(0.38, 0.50);
-      sg = -sg; p.nudge = sg * between(0.02, 0.12);
-      p.space = between(0.09, 0.13);
-    });
-  }
   /* Pair up some of the hand-hung singles too: two neighbours from the same year can share a
      column when neither is a tall portrait (landscapes, squares, Polaroids). Never more than two. */
   const yearOf = p => (String(p.place || '').match(/\d{4}/) || [''])[0];
@@ -55,7 +45,7 @@ window.Museum = function (opts) {
     const aSingle = !a.stack && !b.stack && !(after && after.stack);
     if (!aSingle || a._inPair) continue;
     if (yearOf(a) !== yearOf(b) || kind(a) === 'tall' || kind(b) === 'tall') continue;
-    if (rnd() > 0.6) continue;
+    if (rnd() > 0.7) continue;
     const hOf = p => kind(p) === 'wide' ? 0.21 : 0.27, h = [hOf(a) + 0.01, hOf(b)];
     a.height = h[0]; b.height = h[1]; b.stack = true; b.shift = between(0.02, 0.04) * (rnd() < 0.5 ? -1 : 1);
     a._inPair = b._inPair = true; k++;
