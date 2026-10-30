@@ -71,6 +71,10 @@ window.COLLECTION = [
   { image: "assets/art/polaroid.jpg",      ratio: 0.8228, crop: 0.8228, focus: "50% 50%", height: 0.30, nudge: 0.12,
     place: "Photography, 2022",  note: "Model, photographer and art director. Paid in drinks." },
 
+  { image: "assets/art/secret-santa-2021-1.jpg", ratio: 1.7831, crop: 1.4, focus: "50% 50%", height: 0.28, nudge: -0.08, space: 0.11,
+    more: [{ image: "assets/art/secret-santa-2021-2.jpg", ratio: 1.7831 }],
+    place: "2021", month: "Dec", note: "secret santa", tags: ["xchelsea", "fujifilm x100f"] },
+
   { image: "assets/art/sunrise-mirrors-1.jpg", ratio: 1.7831, crop: 1.35, focus: "52% 45%", height: 0.22, nudge: 0.08, space: 0.11,
     more: [{ image: "assets/art/sunrise-mirrors-2.jpg", ratio: 0.5608 }, { image: "assets/art/sunrise-mirrors-3.jpg", ratio: 1.7831 }],
     place: "2021", month: "May", note: "sunrise and mirrors", tags: ["xchelsea", "fujifilm x100f"] },
