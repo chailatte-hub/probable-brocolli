@@ -72,7 +72,7 @@ window.COLLECTION = [
     place: "Photography, 2022",  note: "Model, photographer and art director. Paid in drinks." },
 
   { image: "assets/art/melbourne-library.jpg", ratio: 1.7831, crop: 1.4, focus: "50% 55%", height: 0.26, nudge: 0.09, space: 0.11,
-    place: "Melbourne, 2022", month: "Apr", tags: ["xchelsea", "fujifilm x100f"] },
+    place: "Melbourne, 2022", month: "Apr", tags: ["xchelsea", "fujifilm x100f", "melbourne"] },
 
   { image: "assets/art/secret-santa-2021-1.jpg", ratio: 1.7831, crop: 1.4, focus: "50% 50%", height: 0.28, nudge: -0.08, space: 0.11,
     more: [{ image: "assets/art/secret-santa-2021-2.jpg", ratio: 1.7831 }],
