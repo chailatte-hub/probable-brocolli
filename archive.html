@@ -40,6 +40,16 @@
   .tile:hover > img, .tile:hover > video, .tile:focus-visible > img, .tile:focus-visible > video { filter: grayscale(0); }
 
   .tile { position: relative; }
+  /* Navigation: hides while scrolling down, comes back on the first scroll up */
+  .bar.fade {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding-bottom: 40px;
+    background: linear-gradient(to bottom, #fff 0%, rgba(255,255,255,.96) 45%, rgba(255,255,255,0) 100%);
+    transition: transform .35s ease, opacity .35s ease;
+  }
+  .bar.fade.away { transform: translateY(-100%); opacity: 0; }
+  main { padding-top: 66px; }
+  @media (prefers-reduced-motion: reduce) { .bar.fade { transition: none; } }
   .grid.tiny .count { display: none; }
   .tile .count {
     position: absolute; top: 8px; right: 8px;
@@ -54,7 +64,7 @@
 </style>
 </head>
 <body>
-<header class="bar solid">
+<header class="bar fade" id="bar">
   <h1>Archive</h1>
   <nav class="tools" aria-label="Archive">
     <label class="year">
@@ -154,6 +164,17 @@
   let lastN = colCount();
   addEventListener('resize', () => { if (colCount() !== lastN) { lastN = colCount(); render(); } });
   render();
+
+  // Show the navigation whenever the visitor scrolls up a little; hide it while scrolling down
+  const bar = document.getElementById('bar');
+  let lastY = scrollY, upBy = 0;
+  addEventListener('scroll', () => {
+    const y = scrollY, d = y - lastY; lastY = y;
+    if (y < 80) { bar.classList.remove('away'); upBy = 0; return; }
+    if (d > 0) { upBy = 0; if (!bar.contains(document.activeElement)) bar.classList.add('away'); }
+    else if (d < 0) { upBy -= d; if (upBy > 24) bar.classList.remove('away'); }
+  }, { passive: true });
+  bar.addEventListener('focusin', () => bar.classList.remove('away'));
 
 })();
 </script>
