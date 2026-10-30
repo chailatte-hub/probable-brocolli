@@ -64,6 +64,10 @@ window.COLLECTION = [
   { image: "assets/art/bangkok-cases.jpg", ratio: 0.6650, crop: 0.80, focus: "45% 55%", height: 0.36, nudge: -0.11, space: 0.08,
     place: "Bangkok, 2024",      note: "Ugly phone cases." },
 
+  { image: "assets/art/jeju-1.jpg", ratio: 1.5, crop: 1.4, focus: "50% 50%", height: 0.28, nudge: 0.07, space: 0.11,
+    more: [{ image: "assets/art/jeju-2.jpg", ratio: 0.6667 }],
+    place: "Jeju, 2023", month: "Oct", tags: ["xrickie", "ricohgriii"] },
+
   { image: "assets/art/penang-1.jpg", ratio: 0.6667, crop: 0.75, focus: "50% 60%", height: 0.44, nudge: -0.06, space: 0.11,
     more: [{ image: "assets/art/penang-2.jpg", ratio: 0.6667 }],
     place: "Penang, 2023", month: "Jul", tags: ["xrickie", "ricohgriii"] },
