@@ -61,6 +61,10 @@ window.COLLECTION = [
   { image: "assets/art/japan-wako.jpg",    ratio: 0.6650, crop: 1.00, focus: "52% 42%", height: 0.24, stack: true, shift: -0.035,
     place: "Japan, 2025", month: "Jan" },
 
+  { image: "assets/art/izu-sunrise-1.jpg", ratio: 0.6667, crop: 0.75, focus: "45% 60%", height: 0.44, nudge: 0.06, space: 0.11,
+    more: [{ image: "assets/art/izu-sunrise-2.jpg", ratio: 1.5 }],
+    place: "Izu, 2024", month: "Dec", note: "izu sunrise", tags: ["xrickie", "ricohgriii"] },
+
   { image: "assets/art/self-portrait-30-1.jpg", ratio: 0.6667, crop: 0.75, focus: "50% 30%", height: 0.46, nudge: 0.05, space: 0.11,
     more: [{ image: "assets/art/self-portrait-30-2.jpg", ratio: 0.6667 }],
     place: "Seoul, 2024", month: "Jul", note: "30 self portrait", tags: ["studio"] },
