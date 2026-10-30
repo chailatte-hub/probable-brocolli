@@ -55,6 +55,9 @@ window.COLLECTION = [
   { video: "assets/art/blue-tiles.mp4", poster: "assets/art/blue-tiles-poster.jpg", ratio: 0.5625, crop: 0.7, focus: "50% 50%", height: 0.42, nudge: 0.06, space: 0.11,
     place: "Seoul, 2026", month: "May" },
 
+  { image: "assets/art/seoul-dusk.jpg", ratio: 0.75, crop: 0.8, focus: "45% 75%", height: 0.40, nudge: -0.05, space: 0.11,
+    place: "Seoul, 2026", month: "May" },
+
   { image: "assets/art/shio-pan-1.jpg", ratio: 1.5, crop: 1.35, focus: "55% 50%", height: 0.26, nudge: -0.06, space: 0.11,
     more: [{ image: "assets/art/shio-pan-2.jpg", ratio: 1.5 }, { image: "assets/art/shio-pan-3.jpg", ratio: 1.5 }],
     place: "2026", month: "May", note: "shio pan and potluck", tags: ["xrickie", "ricohgriii"] },
@@ -88,6 +91,9 @@ window.COLLECTION = [
   { image: "assets/art/nozawa-yakiniku-1.jpg", ratio: 0.6667, crop: 0.8, focus: "50% 55%", height: 0.44, nudge: -0.06, space: 0.12,
     more: [{ image: "assets/art/nozawa-yakiniku-2.jpg", ratio: 0.6667 }],
     place: "Nozawa, 2026", month: "Jan", tags: ["fujifilm", "yakiniku"] },
+
+  { video: "assets/art/nozawa-gopro.mp4", poster: "assets/art/nozawa-gopro-poster.jpg", ratio: 1.7778, crop: 1.5, focus: "50% 50%", height: 0.24, nudge: 0.07, space: 0.11,
+    place: "Nozawa, 2026", month: "Jan" },
 
   { video: "assets/art/seoul-photobooth.mp4", poster: "assets/art/seoul-photobooth-poster.jpg", ratio: 0.6667, crop: 0.6667, focus: "50% 50%", height: 0.42, nudge: -0.05, space: 0.11,
     place: "Seoul, 2025", month: "Nov", tags: ["photobooth"] },
