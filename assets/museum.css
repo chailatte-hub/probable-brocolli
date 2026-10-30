@@ -155,3 +155,14 @@ img, video { -webkit-user-drag: none; -webkit-touch-callout: none; user-select: 
 }
 .notice.on { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .notice { transition: none; } }
+
+/* Close-up viewer on a dark overlay */
+dialog::backdrop { background: rgba(12,12,12,.94); }
+dialog { color: #F2F2F2; }
+.closeup .caption .h, .where { color: #9A9A9A; }
+.caption .tags { color: #F2F2F2; }
+.slide > img, .slide > video { box-shadow: 0 10px 40px rgba(0,0,0,.5); }
+.close { background: transparent; color: #F2F2F2; border-color: rgba(255,255,255,.7); }
+.close:hover { background: rgba(255,255,255,.1); }
+.nav { background: rgba(20,20,20,.8); color: #F2F2F2; border-color: rgba(255,255,255,.7); }
+dialog :focus-visible { outline-color: #F2F2F2; }
