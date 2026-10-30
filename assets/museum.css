@@ -144,3 +144,14 @@ dialog[open] { display: grid; place-items: center; }
 .caption .tag:hover, .caption .tag:focus-visible { border-bottom-color: currentColor; }
 
 @media (prefers-reduced-motion: reduce) { .art > img, .art > video { transition: none; } }
+
+/* Right-click notice */
+img, video { -webkit-user-drag: none; -webkit-touch-callout: none; user-select: none; }
+.notice {
+  position: fixed; z-index: 50; pointer-events: none;
+  padding: 7px 12px; border: 1px solid var(--ink); border-radius: 999px; background: #fff; color: var(--ink);
+  font-family: "Fragment Mono", ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: .04em; white-space: nowrap;
+  opacity: 0; transform: translateY(4px); transition: opacity .25s ease, transform .25s ease;
+}
+.notice.on { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .notice { transition: none; } }
