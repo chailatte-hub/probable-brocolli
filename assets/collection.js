@@ -33,6 +33,14 @@ window.COLLECTION = [
   { image: "assets/art/snowboarding.jpg",  ratio: 0.5622, crop: 0.75, focus: "50% 42%", height: 0.50, nudge: -0.06,
     place: "Aizu, 2026",         note: "The one where I couldn't stop screaming." },
 
+  { image: "assets/art/nozawa-film-1.jpg", ratio: 0.75, crop: 0.75, focus: "50% 50%", height: 0.42, nudge: 0.06, space: 0.11,
+    more: [{ image: "assets/art/nozawa-film-2.jpg", ratio: 1.3333 }],
+    place: "Nozawa, 2026", month: "Jan", tags: ["film"] },
+
+  { image: "assets/art/nozawa-yakiniku-1.jpg", ratio: 0.6667, crop: 0.8, focus: "50% 55%", height: 0.44, nudge: -0.06, space: 0.12,
+    more: [{ image: "assets/art/nozawa-yakiniku-2.jpg", ratio: 0.6667 }],
+    place: "Nozawa, 2026", month: "Jan", tags: ["fujifilm", "yakiniku"] },
+
   { image: "assets/art/secret-santa-1.jpg", ratio: 1.5, crop: 1.35, focus: "50% 50%", height: 0.30, nudge: -0.09, space: 0.12,
     more: [{ image: "assets/art/secret-santa-2.jpg", ratio: 1.5 }],
     place: "2025", month: "Nov", note: "Annual Secret Santa. Always a good time", tags: ["ricohgriii", "rickie"] },
