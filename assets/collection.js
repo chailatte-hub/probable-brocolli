@@ -22,6 +22,10 @@ window.COLLECTION = [
     more: [{ image: "assets/art/pangkor-laut-2.jpg", ratio: 1.5 }, { image: "assets/art/pangkor-laut-3.jpg", ratio: 1.5 }],
     place: "Pangkor Laut, 2026", month: "Aug", tags: ["rickie", "ricohgriii"] },
 
+  { image: "assets/art/bangkok-2026-1.jpg", ratio: 1.5088, crop: 1.35, focus: "45% 50%", height: 0.30, nudge: -0.05, space: 0.11,
+    more: [{ image: "assets/art/bangkok-2026-2.jpg", ratio: 1.5088 }, { image: "assets/art/bangkok-2026-3.jpg", ratio: 1.5088 }],
+    place: "Bangkok, 2026", month: "Jun", tags: ["film", "pentaxespio"] },
+
   { image: "assets/art/gyeongju-1.jpg", ratio: 0.6667, crop: 0.80, focus: "50% 55%", height: 0.40, nudge: -0.07, space: 0.11,
     more: [{ image: "assets/art/gyeongju-2.jpg", ratio: 1.5 }, { image: "assets/art/gyeongju-3.jpg", ratio: 1.5 }],
     place: "Gyeongju, 2026", month: "May", tags: ["rickie", "ricohgriii"] },
