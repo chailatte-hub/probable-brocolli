@@ -60,6 +60,10 @@ window.COLLECTION = [
     more: [{ image: "assets/art/pickleponies-2.jpg", ratio: 0.6644 }, { image: "assets/art/pickleponies-3.jpg", ratio: 1.505 }],
     place: "2025", month: "Mar", note: "pickleponies", tags: ["xrickie", "ricohgriii"] },
 
+  { image: "assets/art/beijing-blossom-1.jpg", ratio: 0.6667, crop: 0.75, focus: "45% 50%", height: 0.44, nudge: -0.06, space: 0.11,
+    more: [{ image: "assets/art/beijing-blossom-2.jpg", ratio: 0.6667 }, { image: "assets/art/beijing-blossom-3.jpg", ratio: 0.6667 }, { image: "assets/art/beijing-blossom-4.jpg", ratio: 0.6667 }],
+    place: "Beijing, 2025", month: "Mar", note: "cherry blossoming in beijing", tags: ["xrickie", "ricohgriii"] },
+
   { image: "assets/art/japan-street.jpg",  ratio: 1.5038, crop: 1.40, focus: "55% 50%", height: 0.20, nudge: 0.06, space: 0.12,
     place: "Japan, 2025", month: "Jan" },
   { image: "assets/art/japan-wako.jpg",    ratio: 0.6650, crop: 1.00, focus: "52% 42%", height: 0.24, stack: true, shift: -0.035,
