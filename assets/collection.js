@@ -38,6 +38,9 @@ window.COLLECTION = [
     more: [{ image: "assets/art/always-forever-2.jpg", ratio: 1.509 }, { image: "assets/art/always-forever-3.jpg", ratio: 1.509 }, { image: "assets/art/always-forever-4.jpg", ratio: 1.509 }],
     place: "2026", month: "Jul", note: "always and forever", tags: ["film", "pentaxespio"] },
 
+  { video: "assets/art/crocs-selfie.mp4", poster: "assets/art/crocs-selfie-poster.jpg", ratio: 0.5625, crop: 0.7, focus: "50% 45%", height: 0.40, nudge: -0.06, space: 0.11,
+    place: "2026", month: "Jul" },
+
   { image: "assets/art/bangkok-2026-1.jpg", ratio: 1.5088, crop: 1.35, focus: "45% 50%", height: 0.30, nudge: -0.05, space: 0.11,
     more: [{ image: "assets/art/bangkok-2026-2.jpg", ratio: 1.5088 }, { image: "assets/art/bangkok-2026-3.jpg", ratio: 1.5088 }],
     place: "Bangkok, 2026", month: "Jun", tags: ["film", "pentaxespio"] },
