@@ -31,12 +31,12 @@ window.COLLECTION = [
 
   { image: "assets/art/secret-santa-1.jpg", ratio: 1.5, crop: 1.35, focus: "50% 50%", height: 0.30, nudge: -0.09, space: 0.12,
     more: [{ image: "assets/art/secret-santa-2.jpg", ratio: 1.5 }],
-    place: "Secret Santa, 2025", month: "Nov", note: "Annual Secret Santa. Always a good time", tags: ["ricohgriii", "rickie"] },
+    place: "2025", month: "Nov", note: "Annual Secret Santa. Always a good time", tags: ["ricohgriii", "rickie"] },
 
   { image: "assets/art/japan-street.jpg",  ratio: 1.5038, crop: 1.40, focus: "55% 50%", height: 0.20, nudge: 0.06, space: 0.12,
-    place: "Japan, 2025" },
+    place: "Japan, 2025", month: "Jan" },
   { image: "assets/art/japan-wako.jpg",    ratio: 0.6650, crop: 1.00, focus: "52% 42%", height: 0.24, stack: true, shift: -0.035,
-    place: "Japan, 2025" },
+    place: "Japan, 2025", month: "Jan" },
 
   { image: "assets/art/bangkok-cases.jpg", ratio: 0.6650, crop: 0.80, focus: "45% 55%", height: 0.36, nudge: -0.11, space: 0.08,
     place: "Bangkok, 2024",      note: "Ugly phone cases." },
