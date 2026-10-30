@@ -26,6 +26,10 @@ window.COLLECTION = [
     more: [{ image: "assets/art/gyeongju-2.jpg", ratio: 1.5 }, { image: "assets/art/gyeongju-3.jpg", ratio: 1.5 }],
     place: "Gyeongju, 2026", month: "May", tags: ["rickie", "ricohgriii"] },
 
+  { image: "assets/art/macritchie-1.jpg", ratio: 1.5, crop: 1.25, focus: "52% 45%", height: 0.28, nudge: 0.10, space: 0.11,
+    more: [{ image: "assets/art/macritchie-2.jpg", ratio: 1.5 }, { image: "assets/art/macritchie-3.jpg", ratio: 1.5 }, { image: "assets/art/macritchie-4.jpg", ratio: 1.5 }],
+    place: "MacRitchie, 2026", month: "May", tags: ["rickie", "ricohgriii"] },
+
   { image: "assets/art/snowboarding.jpg",  ratio: 0.5622, crop: 0.75, focus: "50% 42%", height: 0.50, nudge: -0.06,
     place: "Aizu, 2026",         note: "The one where I couldn't stop screaming." },
 
