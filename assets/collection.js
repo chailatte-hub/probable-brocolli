@@ -86,6 +86,10 @@ window.COLLECTION = [
   { video: "assets/art/seoul-photobooth.mp4", poster: "assets/art/seoul-photobooth-poster.jpg", ratio: 0.6667, crop: 0.6667, focus: "50% 50%", height: 0.42, nudge: -0.05, space: 0.11,
     place: "Seoul, 2025", month: "Nov", tags: ["photobooth"] },
 
+  { image: "assets/art/secret-santa-1.jpg", ratio: 1.5, crop: 1.35, focus: "50% 50%", height: 0.30, nudge: -0.09, space: 0.12,
+    more: [{ image: "assets/art/secret-santa-2.jpg", ratio: 1.5 }],
+    place: "2025", month: "Nov", note: "Annual Secret Santa. Always a good time", tags: ["ricohgriii", "xrickie"] },
+
   { image: "assets/art/party-julhan.jpg", ratio: 0.8231, crop: 0.8231, focus: "50% 50%", height: 0.34, nudge: 0.07, space: 0.09,
     place: "2025", month: "Nov", note: "party for julhan", tags: ["Polaroid", "itypefilm"] },
 
@@ -96,10 +100,6 @@ window.COLLECTION = [
   { image: "assets/art/party-julhan-4.jpg", ratio: 0.8221, crop: 0.8221, focus: "50% 50%", height: 0.32, nudge: 0.05, space: 0.11,
     more: [{ image: "assets/art/party-julhan-5.jpg", ratio: 0.8231 }, { image: "assets/art/party-julhan-6.jpg", ratio: 0.8231 }],
     place: "2025", month: "Nov", note: "party for julhan", tags: ["Polaroid", "itypefilm"] },
-
-  { image: "assets/art/secret-santa-1.jpg", ratio: 1.5, crop: 1.35, focus: "50% 50%", height: 0.30, nudge: -0.09, space: 0.12,
-    more: [{ image: "assets/art/secret-santa-2.jpg", ratio: 1.5 }],
-    place: "2025", month: "Nov", note: "Annual Secret Santa. Always a good time", tags: ["ricohgriii", "xrickie"] },
 
   { image: "assets/art/mumbai-1.jpg", ratio: 1.5, crop: 1.35, focus: "50% 50%", height: 0.27, nudge: -0.07, space: 0.11,
     more: [{ image: "assets/art/mumbai-2.jpg", ratio: 1.5 }],
