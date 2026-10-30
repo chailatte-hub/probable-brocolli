@@ -1,17 +1,16 @@
 /* Museum engine: hangs one long wall, left to right, newest first.
-   1. window.COLLECTION — the hand-hung pieces (layout set by hand in collection.js)
+   1. window.COLLECTION — the hand-picked pieces (crop and focus set in collection.js; size and placement are automatic)
    2. window.TUMBLR     — every Tumblr post, hung automatically in the same salon style.
       A post with several photos shows its first one; clicking opens all of them. */
 window.Museum = function (opts) {
   const o = Object.assign({
     centre: 0.46,   // eye level: where the middle of each column sits, share of screen height
-    gap: 0.06,      // space between columns, share of screen height
-    tighten: 0.6,   // scales every hand-set and automatic gap between columns
-    stackGap: 0.035,// space between stacked pieces
+    gap: 0.05,      // space between columns, share of screen height
+    stackGap: 0.03, // space between stacked pieces
     lead: 0.30,     // space before the first piece (where the name sits)
     tail: 0.30,     // space after the last piece
-    top: 0.10,      // keep art below the navigation…
-    bottom: 0.90,   // …and above the floor
+    top: 0.09,      // keep art below the navigation…
+    bottom: 0.93,   // …and above the floor
   }, opts);
 
   const room = document.getElementById('room');
@@ -36,30 +35,32 @@ window.Museum = function (opts) {
   const shapeOf = r => r < 0.9 ? 'portrait' : r <= 1.15 ? 'square' : 'landscape';
   const cropFor = r => shapeOf(r) === 'portrait' ? 0.8 : shapeOf(r) === 'square' ? 1 : Math.min(r, [1.25, 1.4, 1.5][Math.floor(rnd() * 3)]);
 
-  let canStack = false, sign = 1;
   (window.TUMBLR || []).forEach(t => {
-    const r = t.r[0], shape = shapeOf(r);
-    const p = {
+    const r = t.r[0];
+    pieces.push({
       place: t.place, note: t.note, tags: t.tags,
       image: `assets/archive/thumb/${t.f[0]}.jpg`, full: `assets/archive/full/${t.f[0]}.jpg`,
       ratio: r, crop: cropFor(r),
       slides: t.f.map((f, k) => ({ image: `assets/archive/full/${f}.jpg`, ratio: t.r[k] })),
-    };
-    if (canStack && shape !== 'portrait' && rnd() < 0.65) {
-      // hang under the previous piece, as a pair
-      const prev = pieces[pieces.length - 1];
-      prev.height = between(0.19, 0.24);
-      p.stack = true; p.height = between(0.17, 0.23); p.shift = between(0.02, 0.045) * (rnd() < 0.5 ? -1 : 1);
-      canStack = false;
-    } else {
-      p.height = shape === 'portrait' ? between(0.34, 0.50) : shape === 'square' ? between(0.26, 0.36) : between(0.22, 0.32);
-      sign = -sign;
-      p.nudge = sign * between(0.03, 0.11);
-      p.space = between(0.08, 0.13);
-      canStack = shape !== 'portrait';
-    }
-    pieces.push(p);
+    });
   });
+
+  /* ── Salon packing: every piece gets a size from its shape, then pieces fill columns
+     top to bottom (newest first) until the column is full, so 2–3 pieces share each column. ── */
+  const band = o.bottom - o.top;
+  pieces.forEach(p => {
+    const c = p.crop || p.ratio || 0.8, shape = shapeOf(c);
+    p.height = shape === 'portrait' ? between(0.30, 0.35) : shape === 'square' ? between(0.24, 0.28) : c >= 1.6 ? between(0.18, 0.21) : between(0.20, 0.24);
+    p.shift = between(-0.025, 0.025);
+  });
+  const columns = [];
+  let col = [], used = 0;
+  pieces.forEach(p => {
+    const need = (col.length ? o.stackGap : 0) + p.height;
+    if (col.length && (used + need > band || (col.length >= 2 && rnd() < 0.12))) { columns.push(col); col = []; used = 0; }
+    used += (col.length ? o.stackGap : 0) + p.height; col.push(p);
+  });
+  if (col.length) columns.push(col);
 
   /* ── Build the wall: pieces hang in columns; a "stack" piece joins the column before it ── */
   const set = document.createElement('div');
@@ -68,11 +69,6 @@ window.Museum = function (opts) {
   set.style.paddingRight = `calc(var(--H) * ${Math.max(0, o.tail - o.gap)})`;
   set.innerHTML = `<p class="name" aria-label="Museum of Chai">Museum of <b>Chai</b></p>`;
 
-  const columns = [];
-  pieces.forEach(p => {
-    if (p.stack && columns.length) columns[columns.length - 1].push(p);
-    else columns.push([p]);
-  });
 
   const wallMedia = (p, w) => p.video
     ? `<video src="${p.video}" ${p.poster ? `poster="${p.poster}"` : ''} muted loop playsinline preload="metadata" aria-hidden="true"></video>`
@@ -84,11 +80,12 @@ window.Museum = function (opts) {
   columns.forEach(col => {
     const heights = col.map(p => p.height || 0.4);
     const total = heights.reduce((a, b) => a + b, 0) + o.stackGap * (col.length - 1);
-    let top = o.centre - total / 2 + (col[0].nudge || 0);
+    const spare = band - total;
+    let top = o.top + spare / 2 + between(-0.5, 0.5) * spare;   // centred, drifting a little within the free space
     top = Math.max(o.top, Math.min(o.bottom - total, top));
     const bay = document.createElement('div');
     bay.className = 'bay';
-    bay.style.cssText = `margin-top:calc(var(--H) * ${top});margin-right:calc(var(--H) * ${(col[0].space != null ? col[0].space * o.tighten : o.gap)});gap:calc(var(--H) * ${o.stackGap});`;
+    bay.style.cssText = `margin-top:calc(var(--H) * ${top});margin-right:calc(var(--H) * ${between(o.gap * 0.8, o.gap * 1.25)});gap:calc(var(--H) * ${o.stackGap});`;
 
     col.forEach(p => {
       const h = p.height || 0.4, w = h * (p.crop || p.ratio || 0.8);
