@@ -41,6 +41,9 @@ window.COLLECTION = [
     more: [{ image: "assets/art/nozawa-yakiniku-2.jpg", ratio: 0.6667 }],
     place: "Nozawa, 2026", month: "Jan", tags: ["fujifilm", "yakiniku"] },
 
+  { video: "assets/art/nozawa-cold.mp4", poster: "assets/art/nozawa-cold-poster.jpg", ratio: 0.5625, crop: 0.7, focus: "50% 55%", height: 0.46, nudge: 0.05, space: 0.12,
+    place: "Nozawa, 2026", month: "Jan", note: "Freezing our ass off" },
+
   { image: "assets/art/secret-santa-1.jpg", ratio: 1.5, crop: 1.35, focus: "50% 50%", height: 0.30, nudge: -0.09, space: 0.12,
     more: [{ image: "assets/art/secret-santa-2.jpg", ratio: 1.5 }],
     place: "2025", month: "Nov", note: "Annual Secret Santa. Always a good time", tags: ["ricohgriii", "rickie"] },
