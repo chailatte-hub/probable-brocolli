@@ -53,14 +53,18 @@ window.Museum = function (opts) {
     p.height = shape === 'portrait' ? between(0.30, 0.35) : shape === 'square' ? between(0.24, 0.28) : c >= 1.6 ? between(0.18, 0.21) : between(0.20, 0.24);
     p.shift = between(-0.025, 0.025);
   });
+  // Mostly two per column; now and then a single piece (hung larger), rarely three.
   const columns = [];
-  let col = [], used = 0;
+  let col = [], used = 0, want = 2;
+  const pickWant = () => { const x = rnd(); return x < 0.18 ? 1 : x < 0.90 ? 2 : 3; };
+  want = pickWant();
   pieces.forEach(p => {
     const need = (col.length ? o.stackGap : 0) + p.height;
-    if (col.length && (used + need > band || (col.length >= 2 && rnd() < 0.12))) { columns.push(col); col = []; used = 0; }
+    if (col.length && (col.length >= want || used + need > band)) { columns.push(col); col = []; used = 0; want = pickWant(); }
     used += (col.length ? o.stackGap : 0) + p.height; col.push(p);
   });
   if (col.length) columns.push(col);
+  columns.forEach(c => { if (c.length === 1) c[0].height = Math.min(band * 0.62, c[0].height * 1.45); });
 
   /* ── Build the wall: pieces hang in columns; a "stack" piece joins the column before it ── */
   const set = document.createElement('div');
