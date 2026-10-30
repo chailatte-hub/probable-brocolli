@@ -35,6 +35,7 @@
   }
   .tile:hover > img, .tile:hover > video, .tile:focus-visible > img, .tile:focus-visible > video { filter: grayscale(0); }
 
+  .caption .tags { max-width: min(640px, 86vw); line-height: 1.7; color: var(--ink); text-wrap: balance; }
   .empty { padding: 0 clamp(16px, 4vw, 56px); color: var(--soft); font-size: 12px; }
 
   @media (prefers-reduced-motion: reduce) { .tile > img, .tile > video { transition: none; } }
@@ -63,13 +64,23 @@
 </dialog>
 
 <script src="assets/collection.js"></script>
+<script src="assets/tumblr.js"></script>
 <script>
 (() => {
-  const items = window.COLLECTION.map(p => ({ ...p, year: (String(p.place || '').match(/\d{4}/) || [''])[0] }));
+  const yearOf = p => (String(p.place || '').match(/\d{4}/) || [''])[0];
+  const fromTumblr = (window.TUMBLR || []).map(t => ({
+    image: `assets/archive/full/${t.f}.jpg`, thumb: `assets/archive/thumb/${t.f}.jpg`,
+    ratio: t.r, place: t.place, tags: t.tags,
+  }));
+  // Museum pieces first, then the Tumblr years; newest year first, original order within a year
+  const items = [...window.COLLECTION, ...fromTumblr]
+    .map((p, i) => ({ ...p, year: yearOf(p), i }))
+    .sort((a, b) => (b.year - a.year) || (a.i - b.i));
   const grid = document.getElementById('grid');
   const empty = document.getElementById('empty');
   const select = document.getElementById('year');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
   // Year options, newest first
   [...new Set(items.map(p => p.year).filter(Boolean))].sort((a, b) => b - a)
@@ -79,10 +90,10 @@
   const params = new URLSearchParams(location.search);
   if (params.get('year')) select.value = params.get('year');
 
-  const label = p => [p.place, p.note].filter(Boolean).join('. ') || 'Artwork';
+  const label = p => [p.place, p.note, (p.tags || []).join(', ')].filter(Boolean).join('. ') || 'Artwork';
   const media = (p, big) => p.video
     ? `<video src="${p.video}" ${p.poster ? `poster="${p.poster}"` : ''} muted loop playsinline ${big ? 'controls' : 'autoplay aria-hidden="true"'}></video>`
-    : `<img src="${p.image}" alt="" ${big ? '' : 'loading="lazy" decoding="async"'}>`;
+    : `<img src="${big ? p.image : (p.thumb || p.image)}" alt="" ${big ? '' : 'loading="lazy" decoding="async"'}>`;
 
   const colCount = () => innerWidth < 600 ? 2 : innerWidth < 1000 ? 3 : 4;
 
@@ -121,7 +132,7 @@
   function open(p) {
     body.innerHTML = `
       <div class="big" style="--ratio:${p.ratio || 0.8}">${media(p, true)}</div>
-      ${p.note || p.place ? `<p class="caption">${p.note ? `<span class="t">${p.note}</span>` : ''}${p.place ? `<span class="h">${p.place}</span>` : ''}</p>` : ''}`;
+      <p class="caption">${p.note ? `<span class="t">${esc(p.note)}</span>` : ''}${p.tags && p.tags.length ? `<span class="tags">${p.tags.map(t => '#' + esc(t)).join(' ')}</span>` : ''}${p.place ? `<span class="h">${esc(p.place)}</span>` : ''}</p>`;
     const v = body.querySelector('video'); if (v && !reduce) v.play().catch(() => {});
     dlg.showModal();
   }
