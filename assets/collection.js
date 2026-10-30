@@ -27,6 +27,10 @@ window.COLLECTION = [
     more: [{ image: "assets/art/pangkor-laut-2.jpg", ratio: 1.5 }, { image: "assets/art/pangkor-laut-3.jpg", ratio: 1.5 }],
     place: "Pangkor Laut, 2026", month: "Aug", tags: ["xrickie", "ricohgriii"] },
 
+  { image: "assets/art/tuesday-constants-1.jpg", ratio: 1.5088, crop: 1.35, focus: "45% 55%", height: 0.28, nudge: 0.07, space: 0.11,
+    more: [{ image: "assets/art/tuesday-constants-2.jpg", ratio: 1.5088 }],
+    place: "2026", month: "Jul", note: "my tuesday constants <3", tags: ["film", "pentaxespio"] },
+
   { image: "assets/art/bangkok-2026-1.jpg", ratio: 1.5088, crop: 1.35, focus: "45% 50%", height: 0.30, nudge: -0.05, space: 0.11,
     more: [{ image: "assets/art/bangkok-2026-2.jpg", ratio: 1.5088 }, { image: "assets/art/bangkok-2026-3.jpg", ratio: 1.5088 }],
     place: "Bangkok, 2026", month: "Jun", tags: ["film", "pentaxespio"] },
