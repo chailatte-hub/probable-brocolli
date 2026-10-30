@@ -18,5 +18,13 @@
     clearTimeout(timer); timer = setTimeout(() => note.classList.remove('on'), 1800);
   };
   addEventListener('contextmenu', e => { e.preventDefault(); show(e.clientX, e.clientY); });
+  // goes away as soon as the visitor moves on
+  let ox = 0, oy = 0;
+  const hide = () => { if (note) note.classList.remove('on'); clearTimeout(timer); };
+  addEventListener('contextmenu', e => { ox = e.clientX; oy = e.clientY; }, true);
+  addEventListener('mousemove', e => { if (note && note.classList.contains('on') && Math.hypot(e.clientX - ox, e.clientY - oy) > 6) hide(); }, { passive: true });
+  addEventListener('wheel', hide, { passive: true });
+  addEventListener('touchstart', hide, { passive: true });
+  addEventListener('keydown', hide);
   addEventListener('dragstart', e => { if (e.target.closest('img, video')) e.preventDefault(); });
 })();
