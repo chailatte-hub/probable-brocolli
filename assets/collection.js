@@ -65,6 +65,10 @@ window.COLLECTION = [
     more: [{ image: "assets/art/self-portrait-30-2.jpg", ratio: 0.6667 }],
     place: "Seoul, 2024", month: "Jul", note: "30 self portrait", tags: ["studio"] },
 
+  { image: "assets/art/colour-jpg-1.jpg", ratio: 1.5, crop: 1.35, focus: "45% 50%", height: 0.26, nudge: -0.07, space: 0.11,
+    more: [{ image: "assets/art/colour-jpg-2.jpg", ratio: 0.6667 }, { image: "assets/art/colour-jpg-3.jpg", ratio: 1.5 }],
+    place: "Seoul, 2024", month: "Jul", note: "colour analysis at colour jpg", tags: ["xrickie", "ricohgriii"] },
+
   { image: "assets/art/bangkok-cases.jpg", ratio: 0.6650, crop: 0.80, focus: "45% 55%", height: 0.36, nudge: -0.11, space: 0.08,
     place: "Bangkok, 2024",      note: "Ugly phone cases." },
 
