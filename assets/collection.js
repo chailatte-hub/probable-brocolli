@@ -57,11 +57,11 @@ window.COLLECTION = [
     more: [{ image: "assets/art/macritchie-2.jpg", ratio: 1.5 }, { image: "assets/art/macritchie-3.jpg", ratio: 1.5 }, { image: "assets/art/macritchie-4.jpg", ratio: 1.5 }],
     place: "MacRitchie, 2026", month: "May", tags: ["xrickie", "ricohgriii"] },
 
-  { image: "assets/art/snowboarding.jpg",  ratio: 0.5622, crop: 0.75, focus: "50% 42%", height: 0.50, nudge: -0.06,
-    place: "Aizu, 2026",         note: "The one where I couldn't stop screaming." },
-
   { video: "assets/art/shuv-club.mp4", poster: "assets/art/shuv-club-poster.jpg", ratio: 0.5625, crop: 0.7, focus: "50% 60%", height: 0.46, nudge: -0.05, space: 0.11,
     place: "2026", month: "Mar", note: "Joined the shuv club!!!!!" },
+
+  { image: "assets/art/snowboarding.jpg",  ratio: 0.5622, crop: 0.75, focus: "50% 42%", height: 0.50, nudge: -0.06,
+    place: "Aizu, 2026", month: "Jan",         note: "The one where I couldn't stop screaming." },
 
   { image: "assets/art/nozawa-film-1.jpg", ratio: 0.75, crop: 0.75, focus: "50% 50%", height: 0.42, nudge: 0.06, space: 0.11,
     more: [{ image: "assets/art/nozawa-film-2.jpg", ratio: 1.3333 }],
