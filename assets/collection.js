@@ -26,10 +26,6 @@ window.COLLECTION = [
     more: [{ image: "assets/art/bangkok-2026-2.jpg", ratio: 1.5088 }, { image: "assets/art/bangkok-2026-3.jpg", ratio: 1.5088 }],
     place: "Bangkok, 2026", month: "Jun", tags: ["film", "pentaxespio"] },
 
-  { image: "assets/art/blue-house-1.jpg", ratio: 0.6667, crop: 0.75, focus: "50% 45%", height: 0.44, nudge: 0.07, space: 0.11,
-    more: [{ image: "assets/art/blue-house-2.jpg", ratio: 0.6667 }, { image: "assets/art/blue-house-3.jpg", ratio: 0.6667 }, { image: "assets/art/blue-house-4.jpg", ratio: 0.6667 }],
-    place: "2026", month: "Jun", note: "blue house check", tags: ["xrickie", "ricohgriii"] },
-
   { image: "assets/art/gyeongju-1.jpg", ratio: 0.6667, crop: 0.80, focus: "50% 55%", height: 0.40, nudge: -0.07, space: 0.11,
     more: [{ image: "assets/art/gyeongju-2.jpg", ratio: 1.5 }, { image: "assets/art/gyeongju-3.jpg", ratio: 1.5 }],
     place: "Gyeongju, 2026", month: "May", tags: ["xrickie", "ricohgriii"] },
@@ -96,6 +92,10 @@ window.COLLECTION = [
   { image: "assets/art/bw-goodness-1.jpg", ratio: 1.5, crop: 1.35, focus: "55% 50%", height: 0.26, nudge: -0.05, space: 0.11,
     more: [{ image: "assets/art/bw-goodness-2.jpg", ratio: 0.6667 }, { image: "assets/art/bw-goodness-3.jpg", ratio: 0.6667 }],
     place: "2023", month: "Jun", note: "b/w goodness", tags: ["xrickie", "ricohgriii"] },
+
+  { image: "assets/art/blue-house-1.jpg", ratio: 0.6667, crop: 0.75, focus: "50% 45%", height: 0.44, nudge: 0.07, space: 0.11,
+    more: [{ image: "assets/art/blue-house-2.jpg", ratio: 0.6667 }, { image: "assets/art/blue-house-3.jpg", ratio: 0.6667 }, { image: "assets/art/blue-house-4.jpg", ratio: 0.6667 }],
+    place: "2023", month: "Jun", note: "blue house check", tags: ["xrickie", "ricohgriii"] },
 
   { image: "assets/art/surfing.jpg",       ratio: 0.6667, crop: 0.80, focus: "40% 55%", height: 0.46, nudge: 0.08, space: 0.11,
     place: "Wakesurfing, 2023" },
