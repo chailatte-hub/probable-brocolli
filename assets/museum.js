@@ -36,6 +36,21 @@ window.Museum = function (opts) {
   const shapeOf = r => r < 0.9 ? 'portrait' : r <= 1.15 ? 'square' : 'landscape';
   const cropFor = r => shapeOf(r) === 'portrait' ? 0.8 : shapeOf(r) === 'square' ? 1 : Math.min(r, [1.25, 1.4, 1.5][Math.floor(rnd() * 3)]);
 
+  /* Pair up some of the hand-hung singles too: two neighbours from the same year can share a
+     column when neither is a tall portrait (landscapes, squares, Polaroids). Never more than two. */
+  const yearOf = p => (String(p.place || '').match(/\d{4}/) || [''])[0];
+  const kind = p => { const c = p.crop || p.ratio || 0.8; return c > 1.15 ? 'wide' : c >= 0.78 ? 'squarish' : 'tall'; };
+  for (let k = 1; k < pieces.length; k++) {
+    const a = pieces[k - 1], b = pieces[k], before = pieces[k - 2], after = pieces[k + 1];
+    const aSingle = !a.stack && !b.stack && !(after && after.stack);
+    if (!aSingle || a._inPair) continue;
+    if (yearOf(a) !== yearOf(b) || kind(a) === 'tall' || kind(b) === 'tall') continue;
+    if (rnd() > 0.7) continue;
+    const hOf = p => kind(p) === 'wide' ? 0.21 : 0.27, h = [hOf(a) + 0.01, hOf(b)];
+    a.height = h[0]; b.height = h[1]; b.stack = true; b.shift = between(0.02, 0.04) * (rnd() < 0.5 ? -1 : 1);
+    a._inPair = b._inPair = true; k++;
+  }
+
   let canStack = false, sign = 1;
   (window.TUMBLR || []).forEach(t => {
     const r = t.r[0], shape = shapeOf(r);
