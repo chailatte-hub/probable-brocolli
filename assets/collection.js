@@ -60,6 +60,9 @@ window.COLLECTION = [
   { image: "assets/art/bangkok-cases.jpg", ratio: 0.6650, crop: 0.80, focus: "45% 55%", height: 0.36, nudge: -0.11, space: 0.08,
     place: "Bangkok, 2024",      note: "Ugly phone cases." },
 
+  { image: "assets/art/rickie-pottery.jpg", ratio: 1.5, crop: 1.4, focus: "55% 50%", height: 0.28, nudge: 0.06, space: 0.11,
+    place: "2023", month: "Jun", note: "birth of rickie at pottery", tags: ["rickie", "ricohgriii"] },
+
   { image: "assets/art/surfing.jpg",       ratio: 0.6667, crop: 0.80, focus: "40% 55%", height: 0.46, nudge: 0.08, space: 0.11,
     place: "Wakesurfing, 2023" },
 
