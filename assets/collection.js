@@ -68,6 +68,10 @@ window.COLLECTION = [
     more: [{ image: "assets/art/jeju-2.jpg", ratio: 0.6667 }],
     place: "Jeju, 2023", month: "Oct", tags: ["xrickie", "ricohgriii"] },
 
+  { image: "assets/art/seoul-autumn-1.jpg", ratio: 0.6667, crop: 0.75, focus: "50% 55%", height: 0.46, nudge: -0.06, space: 0.11,
+    more: [{ image: "assets/art/seoul-autumn-2.jpg", ratio: 1.5 }, { image: "assets/art/seoul-autumn-3.jpg", ratio: 1.5 }],
+    place: "Seoul, 2023", month: "Oct", note: "autumn in seoul", tags: ["xrickie", "ricohgriii"] },
+
   { image: "assets/art/penang-1.jpg", ratio: 0.6667, crop: 0.75, focus: "50% 60%", height: 0.44, nudge: -0.06, space: 0.11,
     more: [{ image: "assets/art/penang-2.jpg", ratio: 0.6667 }],
     place: "Penang, 2023", month: "Jul", tags: ["xrickie", "ricohgriii"] },
