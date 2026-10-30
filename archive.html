@@ -152,7 +152,7 @@
     ? `<video src="${m.video}" ${m.poster ? `poster="${m.poster}"` : ''} muted loop playsinline ${big ? 'controls' : 'autoplay aria-hidden="true"'}></video>`
     : `<img src="${big ? m.image : (m.thumb || m.image)}" alt="" loading="lazy" decoding="async">`;
 
-  // As many ~300px columns as fit (at least 2). Zooming the browser out makes more fit,
+  // As many ~175px columns as fit on desktop (at least 2; phones keep 2). Zooming the browser out makes more fit,
   // and columns also narrow a little as you zoom out, so at the smallest zoom the whole
   // archive fits on about one screen.
   const zoom = () => {
@@ -162,7 +162,7 @@
   const colCount = () => {
     const cs = getComputedStyle(grid), gap = parseFloat(cs.columnGap) || 20;
     const avail = grid.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
-    const col = innerWidth > 600 ? 300 * (0.45 + 0.55 * zoom()) : 300;
+    const col = innerWidth > 600 ? 175 * (0.45 + 0.55 * zoom()) : 300;   // ~175px columns on desktop
     return Math.max(2, Math.floor((avail + gap) / (col + gap)));
   };
 
