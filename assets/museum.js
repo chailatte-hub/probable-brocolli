@@ -5,9 +5,10 @@
 window.Museum = function (opts) {
   const o = Object.assign({
     centre: 0.46,   // eye level: where the middle of each column sits, share of screen height
-    gap: 0.10,      // space between columns, share of screen height
+    gap: 0.06,      // space between columns, share of screen height
+    tighten: 0.6,   // scales every hand-set and automatic gap between columns
     stackGap: 0.035,// space between stacked pieces
-    lead: 0.34,     // space before the first piece (where the name sits)
+    lead: 0.30,     // space before the first piece (where the name sits)
     tail: 0.30,     // space after the last piece
     top: 0.10,      // keep art below the navigation…
     bottom: 0.90,   // …and above the floor
@@ -44,7 +45,7 @@ window.Museum = function (opts) {
       ratio: r, crop: cropFor(r),
       slides: t.f.map((f, k) => ({ image: `assets/archive/full/${f}.jpg`, ratio: t.r[k] })),
     };
-    if (canStack && shape !== 'portrait' && rnd() < 0.45) {
+    if (canStack && shape !== 'portrait' && rnd() < 0.65) {
       // hang under the previous piece, as a pair
       const prev = pieces[pieces.length - 1];
       prev.height = between(0.19, 0.24);
@@ -87,7 +88,7 @@ window.Museum = function (opts) {
     top = Math.max(o.top, Math.min(o.bottom - total, top));
     const bay = document.createElement('div');
     bay.className = 'bay';
-    bay.style.cssText = `margin-top:calc(var(--H) * ${top});margin-right:calc(var(--H) * ${col[0].space ?? o.gap});gap:calc(var(--H) * ${o.stackGap});`;
+    bay.style.cssText = `margin-top:calc(var(--H) * ${top});margin-right:calc(var(--H) * ${(col[0].space != null ? col[0].space * o.tighten : o.gap)});gap:calc(var(--H) * ${o.stackGap});`;
 
     col.forEach(p => {
       const h = p.height || 0.4, w = h * (p.crop || p.ratio || 0.8);
