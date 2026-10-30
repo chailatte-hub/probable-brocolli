@@ -71,9 +71,13 @@ window.COLLECTION = [
   { image: "assets/art/polaroid.jpg",      ratio: 0.8228, crop: 0.8228, focus: "50% 50%", height: 0.30, nudge: 0.12,
     place: "Photography, 2022",  note: "Model, photographer and art director. Paid in drinks." },
 
-  { image: "assets/art/sunrise-mirrors-1.jpg", ratio: 1.7831, crop: 1.35, focus: "52% 45%", height: 0.28, nudge: 0.08, space: 0.11,
+  { image: "assets/art/sunrise-mirrors-1.jpg", ratio: 1.7831, crop: 1.35, focus: "52% 45%", height: 0.22, nudge: 0.08, space: 0.11,
     more: [{ image: "assets/art/sunrise-mirrors-2.jpg", ratio: 0.5608 }, { image: "assets/art/sunrise-mirrors-3.jpg", ratio: 1.7831 }],
     place: "2021", month: "May", note: "sunrise and mirrors", tags: ["xchelsea", "fujifilm x100f"] },
+
+  { image: "assets/art/kyes-bowl-1.jpg", ratio: 1.7831, crop: 1.25, focus: "58% 45%", height: 0.22, stack: true, shift: -0.03,
+    more: [{ image: "assets/art/kyes-bowl-2.jpg", ratio: 1.7831 }, { image: "assets/art/kyes-bowl-3.jpg", ratio: 1.7831 }],
+    place: "2021", month: "May", note: "kye's bowl", tags: ["xchelsea", "fujifilm x100f", "kye", "dog"] },
 
   { image: "assets/art/aging-celebrations.jpg", ratio: 0.5608, crop: 0.8, focus: "50% 40%", height: 0.44, nudge: -0.06, space: 0.12,
     place: "2020", month: "Jul", note: "of aging and celebrations", tags: ["xchelsea", "fujifilm x100f"] },
