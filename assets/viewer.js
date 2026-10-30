@@ -16,7 +16,7 @@
   window.openViewer = function (p) {
     const n = total = p.slides.length;
     const maxR = Math.max(...p.slides.map(m => m.ratio || 0.8));
-    const tags = p.tags && p.tags.length ? `<span class="tags">${p.tags.map(t => '#' + esc(t)).join(' ')}</span>` : '';
+    const tags = p.tags && p.tags.length ? `<span class="tags">${p.tags.map(t => `<a class="tag" href="archive.html?tag=${encodeURIComponent(t.toLowerCase())}" data-tag="${esc(t)}">#${esc(t)}</a>`).join(' ')}</span>` : '';
     body.innerHTML = `
       <div class="viewer" style="--vh:min(72svh, 900px);--vw:min(84vw, calc(min(72svh, 900px) * ${maxR}))">
         <div class="slides" id="slides" tabindex="0" aria-label="${n > 1 ? `${n} photos. Use arrow keys to move between them` : 'Photo'}">
@@ -55,6 +55,14 @@
   dlg.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight') { go(1); e.preventDefault(); }
     if (e.key === 'ArrowLeft') { go(-1); e.preventDefault(); }
+  });
+  // Tags link to the archive filtered by that tag. The archive page can handle it in place.
+  body.addEventListener('click', e => {
+    const a = e.target.closest('a.tag');
+    if (!a || !window.onTagClick || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    e.preventDefault();
+    dlg.close();
+    window.onTagClick(a.dataset.tag);
   });
   document.getElementById('close').addEventListener('click', () => dlg.close());
   dlg.addEventListener('click', e => {
