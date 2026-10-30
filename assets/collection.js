@@ -113,6 +113,10 @@ window.COLLECTION = [
   { image: "assets/art/italy-food.jpg",    ratio: 1.7822, crop: 1.50, focus: "30% 60%", height: 0.18, stack: true, shift: 0.045,
     place: "Italy, 2023" },
 
+  { image: "assets/art/photobooth-ting-1.jpg", ratio: 0.6667, crop: 0.75, focus: "45% 35%", height: 0.44, nudge: -0.05, space: 0.11,
+    more: [{ image: "assets/art/photobooth-ting-2.jpg", ratio: 0.6667 }],
+    place: "2022", month: "Sep", note: "selfie time with ting", tags: ["photobooth"] },
+
   { image: "assets/art/polaroid.jpg",      ratio: 0.8228, crop: 0.8228, focus: "50% 50%", height: 0.30, nudge: 0.12,
     place: "Photography, 2022",  note: "Model, photographer and art director. Paid in drinks." },
 
