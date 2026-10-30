@@ -64,8 +64,12 @@ window.COLLECTION = [
   { image: "assets/art/bangkok-cases.jpg", ratio: 0.6650, crop: 0.80, focus: "45% 55%", height: 0.36, nudge: -0.11, space: 0.08,
     place: "Bangkok, 2024",      note: "Ugly phone cases." },
 
-  { image: "assets/art/secret-santa-2023.jpg", ratio: 1.5, crop: 1.4, focus: "50% 45%", height: 0.28, nudge: -0.07, space: 0.11,
+  { image: "assets/art/secret-santa-2023.jpg", ratio: 1.5, crop: 1.4, focus: "50% 45%", height: 0.22, nudge: -0.03, space: 0.11,
     place: "2023", month: "Dec", note: "secret santa", tags: ["xrickie", "ricohgriii"] },
+
+  { image: "assets/art/hyde-park-1.jpg", ratio: 1.5, crop: 1.35, focus: "40% 45%", height: 0.21, stack: true, shift: 0.035,
+    more: [{ image: "assets/art/hyde-park-2.jpg", ratio: 1.5 }, { image: "assets/art/hyde-park-3.jpg", ratio: 1.5 }],
+    place: "London, 2023", month: "Dec", note: "Hyde park with some friends", tags: ["xrickie", "ricohgriii"] },
 
   { image: "assets/art/jeju-1.jpg", ratio: 1.5, crop: 1.4, focus: "50% 50%", height: 0.28, nudge: 0.07, space: 0.11,
     more: [{ image: "assets/art/jeju-2.jpg", ratio: 0.6667 }],
