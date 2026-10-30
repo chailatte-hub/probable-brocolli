@@ -107,6 +107,7 @@ dialog[open] { display: grid; place-items: center; }
 }
 .closeup .big > img, .closeup .big > video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .closeup .caption { margin: 0; text-align: center; font-size: 12px; display: grid; gap: 4px; }
+.closeup .caption .t { white-space: pre-line; }
 .closeup .caption .h { color: var(--soft); }
 .close {
   position: fixed; top: 14px; right: 14px; padding: 8px 14px; border-radius: 999px;
@@ -118,12 +119,13 @@ dialog[open] { display: grid; place-items: center; }
 .viewer { position: relative; display: grid; justify-items: center; gap: 10px; }
 .slides {
   width: var(--vw); height: var(--vh);
-  display: flex; overflow-x: auto; overscroll-behavior-x: contain;
+  display: flex; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory; scrollbar-width: none;
 }
 .slides::-webkit-scrollbar { display: none; }
 .slides:focus-visible { outline: none; }
-.slide { flex: 0 0 100%; height: 100%; margin: 0; scroll-snap-align: center; display: grid; place-items: center; }
+/* each photo fits whole inside the frame, portrait or landscape */
+.slide { flex: 0 0 100%; height: 100%; min-width: 0; margin: 0; scroll-snap-align: center; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .slide > img, .slide > video { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; box-shadow: 0 10px 40px rgba(0,0,0,.12); }
 .nav {
   position: absolute; top: calc(var(--vh) / 2); transform: translateY(-50%);
