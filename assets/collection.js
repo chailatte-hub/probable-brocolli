@@ -64,11 +64,19 @@ window.COLLECTION = [
   { image: "assets/art/bangkok-cases.jpg", ratio: 0.6650, crop: 0.80, focus: "45% 55%", height: 0.36, nudge: -0.11, space: 0.08,
     place: "Bangkok, 2024",      note: "Ugly phone cases." },
 
+  { image: "assets/art/penang-1.jpg", ratio: 0.6667, crop: 0.75, focus: "50% 60%", height: 0.44, nudge: -0.06, space: 0.11,
+    more: [{ image: "assets/art/penang-2.jpg", ratio: 0.6667 }],
+    place: "Penang, 2023", month: "Jul", tags: ["xrickie", "ricohgriii"] },
+
   { image: "assets/art/rickie-pottery.jpg", ratio: 1.5, crop: 1.4, focus: "55% 50%", height: 0.22, nudge: 0.03, space: 0.11,
     place: "2023", month: "Jun", note: "birth of rickie at pottery", tags: ["xrickie", "ricohgriii"] },
 
   { image: "assets/art/wet-plate.jpg", ratio: 1.5, crop: 1.35, focus: "50% 45%", height: 0.20, stack: true, shift: -0.03,
     place: "2023", month: "Jun", note: "wet plate photograph (semi annual birthday self portrait)", tags: ["xrickie", "ricohgriii"] },
+
+  { image: "assets/art/bw-goodness-1.jpg", ratio: 1.5, crop: 1.35, focus: "55% 50%", height: 0.26, nudge: -0.05, space: 0.11,
+    more: [{ image: "assets/art/bw-goodness-2.jpg", ratio: 0.6667 }, { image: "assets/art/bw-goodness-3.jpg", ratio: 0.6667 }],
+    place: "2023", month: "Jun", note: "b/w goodness", tags: ["xrickie", "ricohgriii"] },
 
   { image: "assets/art/surfing.jpg",       ratio: 0.6667, crop: 0.80, focus: "40% 55%", height: 0.46, nudge: 0.08, space: 0.11,
     place: "Wakesurfing, 2023" },
