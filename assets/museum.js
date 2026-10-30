@@ -39,7 +39,7 @@ window.Museum = function (opts) {
   (window.TUMBLR || []).forEach(t => {
     const r = t.r[0], shape = shapeOf(r);
     const p = {
-      place: t.place, tags: t.tags,
+      place: t.place, note: t.note, tags: t.tags,
       image: `assets/archive/thumb/${t.f[0]}.jpg`, full: `assets/archive/full/${t.f[0]}.jpg`,
       ratio: r, crop: cropFor(r),
       slides: t.f.map((f, k) => ({ image: `assets/archive/full/${f}.jpg`, ratio: t.r[k] })),

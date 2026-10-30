@@ -100,7 +100,7 @@
 (() => {
   const yearOf = p => (String(p.place || '').match(/\d{4}/) || [''])[0];
   const fromTumblr = (window.TUMBLR || []).map(t => ({
-    place: t.place, tags: t.tags,
+    place: t.place, note: t.note, tags: t.tags,
     slides: t.f.map((f, k) => ({ image: `assets/archive/full/${f}.jpg`, thumb: `assets/archive/thumb/${f}.jpg`, ratio: t.r[k] })),
   }));
   const fromMuseum = window.COLLECTION.map(p => ({ ...p, slides: [{ image: p.image, video: p.video, poster: p.poster, ratio: p.ratio }] }));
