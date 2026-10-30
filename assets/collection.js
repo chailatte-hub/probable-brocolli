@@ -68,6 +68,10 @@ window.COLLECTION = [
     more: [{ image: "assets/art/penang-2.jpg", ratio: 0.6667 }],
     place: "Penang, 2023", month: "Jul", tags: ["xrickie", "ricohgriii"] },
 
+  { image: "assets/art/coucou-1.jpg", ratio: 1.5, crop: 1.35, focus: "55% 45%", height: 0.26, nudge: 0.08, space: 0.11,
+    more: [{ image: "assets/art/coucou-2.jpg", ratio: 1.5 }],
+    place: "2023", month: "Jul", note: "coucou", tags: ["xrickie", "ricohgriii"] },
+
   { image: "assets/art/rickie-pottery.jpg", ratio: 1.5, crop: 1.4, focus: "55% 50%", height: 0.22, nudge: 0.03, space: 0.11,
     place: "2023", month: "Jun", note: "birth of rickie at pottery", tags: ["xrickie", "ricohgriii"] },
 
