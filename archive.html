@@ -35,6 +35,37 @@
   }
   .tile:hover > img, .tile:hover > video, .tile:focus-visible > img, .tile:focus-visible > video { filter: grayscale(0); }
 
+  .tile { position: relative; }
+  .tile .count {
+    position: absolute; top: 8px; right: 8px;
+    padding: 3px 7px; border-radius: 999px;
+    background: rgba(255,255,255,.88); color: var(--ink);
+    font-size: 10px; letter-spacing: .04em; line-height: 1.2;
+  }
+
+  /* Viewer: swipe, arrow keys or the buttons to move through a post */
+  .viewer { position: relative; display: grid; justify-items: center; gap: 10px; }
+  .slides {
+    width: var(--vw); height: var(--vh);
+    display: flex; overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory; scrollbar-width: none;
+  }
+  .slides::-webkit-scrollbar { display: none; }
+  .slides:focus-visible { outline: none; }
+  .slide { flex: 0 0 100%; height: 100%; margin: 0; scroll-snap-align: center; display: grid; place-items: center; }
+  .slide > img, .slide > video { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; box-shadow: 0 10px 40px rgba(0,0,0,.12); }
+  .nav {
+    position: absolute; top: calc(var(--vh) / 2); transform: translateY(-50%);
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid #000; background: rgba(255,255,255,.92); color: #000;
+    display: grid; place-items: center; cursor: pointer;
+  }
+  .nav svg { width: 12px; height: 12px; }
+  .nav.prev { left: -52px; } .nav.next { right: -52px; }
+  .nav[disabled] { opacity: .2; cursor: default; }
+  .where { font-size: 11px; color: var(--soft); letter-spacing: .04em; }
+  @media (max-width: 720px) { .nav { display: none; } }
+
   .caption .tags { max-width: min(640px, 86vw); line-height: 1.7; color: var(--ink); text-wrap: balance; }
   .empty { padding: 0 clamp(16px, 4vw, 56px); color: var(--soft); font-size: 12px; }
 
@@ -69,12 +100,13 @@
 (() => {
   const yearOf = p => (String(p.place || '').match(/\d{4}/) || [''])[0];
   const fromTumblr = (window.TUMBLR || []).map(t => ({
-    image: `assets/archive/full/${t.f}.jpg`, thumb: `assets/archive/thumb/${t.f}.jpg`,
-    ratio: t.r, place: t.place, tags: t.tags,
+    place: t.place, tags: t.tags,
+    slides: t.f.map((f, k) => ({ image: `assets/archive/full/${f}.jpg`, thumb: `assets/archive/thumb/${f}.jpg`, ratio: t.r[k] })),
   }));
+  const fromMuseum = window.COLLECTION.map(p => ({ ...p, slides: [{ image: p.image, video: p.video, poster: p.poster, ratio: p.ratio }] }));
   // Museum pieces first, then the Tumblr years; newest year first, original order within a year
-  const items = [...window.COLLECTION, ...fromTumblr]
-    .map((p, i) => ({ ...p, year: yearOf(p), i }))
+  const items = [...fromMuseum, ...fromTumblr]
+    .map((p, i) => ({ ...p, ratio: p.slides[0].ratio || 0.8, year: yearOf(p), i }))
     .sort((a, b) => (b.year - a.year) || (a.i - b.i));
   const grid = document.getElementById('grid');
   const empty = document.getElementById('empty');
@@ -91,9 +123,9 @@
   if (params.get('year')) select.value = params.get('year');
 
   const label = p => [p.place, p.note, (p.tags || []).join(', ')].filter(Boolean).join('. ') || 'Artwork';
-  const media = (p, big) => p.video
-    ? `<video src="${p.video}" ${p.poster ? `poster="${p.poster}"` : ''} muted loop playsinline ${big ? 'controls' : 'autoplay aria-hidden="true"'}></video>`
-    : `<img src="${big ? p.image : (p.thumb || p.image)}" alt="" ${big ? '' : 'loading="lazy" decoding="async"'}>`;
+  const media = (m, big) => m.video
+    ? `<video src="${m.video}" ${m.poster ? `poster="${m.poster}"` : ''} muted loop playsinline ${big ? 'controls' : 'autoplay aria-hidden="true"'}></video>`
+    : `<img src="${big ? m.image : (m.thumb || m.image)}" alt="" loading="lazy" decoding="async">`;
 
   const colCount = () => innerWidth < 600 ? 2 : innerWidth < 1000 ? 3 : 4;
 
@@ -107,8 +139,9 @@
       const btn = document.createElement('button');
       btn.className = 'tile'; btn.type = 'button';
       btn.style.setProperty('--ratio', p.ratio || 0.8);
-      btn.setAttribute('aria-label', label(p) + '. View up close');
-      btn.innerHTML = media(p);
+      const n = p.slides.length;
+      btn.setAttribute('aria-label', label(p) + (n > 1 ? `. ${n} photos` : '') + '. View up close');
+      btn.innerHTML = media(p.slides[0]) + (n > 1 ? `<span class="count" aria-hidden="true">1/${n}</span>` : '');
       btn.addEventListener('click', () => open(p));
       target.el.appendChild(btn);
       target.h += 1 / (p.ratio || 0.8);
@@ -126,19 +159,53 @@
   addEventListener('resize', () => { if (colCount() !== lastN) { lastN = colCount(); render(); } });
   render();
 
-  // Up close, in colour, with place and note
+  // Up close, in colour. Posts with several photos swipe sideways.
   const dlg = document.getElementById('closeup');
   const body = document.getElementById('closeup-body');
+  const CHEV = d => `<svg viewBox="0 0 12 12" aria-hidden="true"><path d="${d}" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>`;
+  let track = null, total = 1;
   function open(p) {
+    const n = total = p.slides.length;
+    const maxR = Math.max(...p.slides.map(m => m.ratio || 0.8));
+    const caption = `<p class="caption">${p.note ? `<span class="t">${esc(p.note)}</span>` : ''}${p.tags && p.tags.length ? `<span class="tags">${p.tags.map(t => '#' + esc(t)).join(' ')}</span>` : ''}${p.place ? `<span class="h">${esc(p.place)}</span>` : ''}</p>`;
     body.innerHTML = `
-      <div class="big" style="--ratio:${p.ratio || 0.8}">${media(p, true)}</div>
-      <p class="caption">${p.note ? `<span class="t">${esc(p.note)}</span>` : ''}${p.tags && p.tags.length ? `<span class="tags">${p.tags.map(t => '#' + esc(t)).join(' ')}</span>` : ''}${p.place ? `<span class="h">${esc(p.place)}</span>` : ''}</p>`;
+      <div class="viewer" style="--vh:min(72svh, 900px);--vw:min(84vw, calc(min(72svh, 900px) * ${maxR}))">
+        <div class="slides" id="slides" tabindex="0" aria-label="${n > 1 ? `${n} photos. Use arrow keys to move between them` : 'Photo'}">
+          ${p.slides.map(m => `<figure class="slide">${media(m, true)}</figure>`).join('')}
+        </div>
+        ${n > 1 ? `
+          <button class="nav prev" type="button" aria-label="Previous photo">${CHEV('M7.5 2 L3.5 6 L7.5 10')}</button>
+          <button class="nav next" type="button" aria-label="Next photo">${CHEV('M4.5 2 L8.5 6 L4.5 10')}</button>
+          <span class="where" aria-live="polite">1 / ${n}</span>` : ''}
+      </div>
+      ${caption}`;
+    track = body.querySelector('#slides');
+    if (n > 1) {
+      const where = body.querySelector('.where'), prev = body.querySelector('.prev'), next = body.querySelector('.next');
+      const update = () => {
+        const k = Math.round(track.scrollLeft / track.clientWidth);
+        where.textContent = `${k + 1} / ${n}`; prev.disabled = k === 0; next.disabled = k === n - 1;
+      };
+      track.addEventListener('scroll', update, { passive: true });
+      prev.addEventListener('click', () => go(-1)); next.addEventListener('click', () => go(1));
+      update();
+    }
     const v = body.querySelector('video'); if (v && !reduce) v.play().catch(() => {});
     dlg.showModal();
+    track.focus({ preventScroll: true });
   }
+  function go(d) {
+    if (!track) return;
+    const k = Math.round(track.scrollLeft / track.clientWidth) + d;
+    track.scrollTo({ left: Math.max(0, Math.min(total - 1, k)) * track.clientWidth, behavior: reduce ? 'auto' : 'smooth' });
+  }
+  dlg.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') { go(1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft') { go(-1); e.preventDefault(); }
+  });
   document.getElementById('close').addEventListener('click', () => dlg.close());
-  dlg.addEventListener('click', e => { if (e.target === dlg || e.target === body) dlg.close(); });
-  dlg.addEventListener('close', () => { body.innerHTML = ''; });
+  dlg.addEventListener('click', e => { if (e.target === dlg || e.target === body || e.target.classList.contains('slide')) dlg.close(); });
+  dlg.addEventListener('close', () => { body.innerHTML = ''; track = null; });
 })();
 </script>
 </body>
