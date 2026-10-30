@@ -14,12 +14,17 @@
      place:  small line under the piece on the wall
      note:   the one-liner, shown only up close
      tags:   clickable tags, shown up close
+     month:  optional, only used to keep the order right (newest first)
      more:   extra photos in the same post, [{ image, ratio }], swiped through up close
    ───────────────────────────────────────────────────────────── */
 window.COLLECTION = [
-  { image: "assets/art/pangkor-laut-1.jpg", ratio: 0.6667, crop: 0.80, focus: "40% 62%", height: 0.46, nudge: 0.06, space: 0.12,
+  { image: "assets/art/pangkor-laut-1.jpg", ratio: 0.6667, crop: 0.80, focus: "40% 62%", height: 0.46, nudge: 0.07, space: 0.12,
     more: [{ image: "assets/art/pangkor-laut-2.jpg", ratio: 1.5 }, { image: "assets/art/pangkor-laut-3.jpg", ratio: 1.5 }],
-    place: "Pangkor Laut, 2026", tags: ["rickie", "ricohgriii"] },
+    place: "Pangkor Laut, 2026", month: "Aug", tags: ["rickie", "ricohgriii"] },
+
+  { image: "assets/art/gyeongju-1.jpg", ratio: 0.6667, crop: 0.80, focus: "50% 55%", height: 0.40, nudge: -0.07, space: 0.11,
+    more: [{ image: "assets/art/gyeongju-2.jpg", ratio: 1.5 }, { image: "assets/art/gyeongju-3.jpg", ratio: 1.5 }],
+    place: "Gyeongju, 2026", month: "May", tags: ["rickie", "ricohgriii"] },
 
   { image: "assets/art/snowboarding.jpg",  ratio: 0.5622, crop: 0.75, focus: "50% 42%", height: 0.50, nudge: -0.06,
     place: "Aizu, 2026",         note: "The one where I couldn't stop screaming." },
