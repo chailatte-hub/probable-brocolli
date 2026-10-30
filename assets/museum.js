@@ -24,7 +24,7 @@ window.Museum = function (opts) {
   /* ── 1. Hand-hung pieces ── */
   const pieces = window.COLLECTION.map(p => ({
     ...p,
-    slides: [{ image: p.image, video: p.video, poster: p.poster, ratio: p.ratio }],
+    slides: p.more ? [{ image: p.image, ratio: p.ratio }, ...p.more] : [{ image: p.image, video: p.video, poster: p.poster, ratio: p.ratio }],
   }));
 
   /* ── 2. Tumblr posts, hung automatically ──

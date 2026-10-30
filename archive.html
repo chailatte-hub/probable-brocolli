@@ -103,7 +103,7 @@
     place: t.place, note: t.note, tags: t.tags,
     slides: t.f.map((f, k) => ({ image: `assets/archive/full/${f}.jpg`, thumb: `assets/archive/thumb/${f}.jpg`, ratio: t.r[k] })),
   }));
-  const fromMuseum = window.COLLECTION.map(p => ({ ...p, slides: [{ image: p.image, video: p.video, poster: p.poster, ratio: p.ratio }] }));
+  const fromMuseum = window.COLLECTION.map(p => ({ ...p, slides: p.more ? [{ image: p.image, ratio: p.ratio }, ...p.more] : [{ image: p.image, video: p.video, poster: p.poster, ratio: p.ratio }] }));
   // Museum pieces first, then the Tumblr years; newest year first, original order within a year
   const items = [...fromMuseum, ...fromTumblr]
     .map((p, i) => ({ ...p, ratio: p.slides[0].ratio || 0.8, year: yearOf(p), i }))
