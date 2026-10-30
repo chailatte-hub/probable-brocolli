@@ -69,6 +69,9 @@ window.COLLECTION = [
   { image: "assets/art/snowboarding.jpg",  ratio: 0.5622, crop: 0.75, focus: "50% 42%", height: 0.50, nudge: -0.06,
     place: "Aizu, 2026", month: "Jan",         note: "The one where I couldn't stop screaming." },
 
+  { video: "assets/art/japan-2026.mp4", poster: "assets/art/japan-2026-poster.jpg", ratio: 0.5625, crop: 0.7, focus: "50% 40%", height: 0.44, nudge: -0.05, space: 0.11,
+    place: "Aizu, 2026", month: "Jan" },
+
   { image: "assets/art/nozawa-film-1.jpg", ratio: 0.75, crop: 0.75, focus: "50% 50%", height: 0.42, nudge: 0.06, space: 0.11,
     more: [{ image: "assets/art/nozawa-film-2.jpg", ratio: 1.3333 }],
     place: "Nozawa, 2026", month: "Jan", tags: ["film"] },
@@ -79,9 +82,6 @@ window.COLLECTION = [
 
   { video: "assets/art/nozawa-cold.mp4", poster: "assets/art/nozawa-cold-poster.jpg", ratio: 0.5625, crop: 0.7, focus: "50% 55%", height: 0.46, nudge: 0.05, space: 0.12,
     place: "Nozawa, 2026", month: "Jan", note: "Freezing our ass off" },
-
-  { video: "assets/art/japan-2026.mp4", poster: "assets/art/japan-2026-poster.jpg", ratio: 0.5625, crop: 0.7, focus: "50% 40%", height: 0.44, nudge: -0.05, space: 0.11,
-    place: "Japan, 2026", month: "Jan" },
 
   { video: "assets/art/seoul-photobooth.mp4", poster: "assets/art/seoul-photobooth-poster.jpg", ratio: 0.6667, crop: 0.6667, focus: "50% 50%", height: 0.42, nudge: -0.05, space: 0.11,
     place: "Seoul, 2025", month: "Nov", tags: ["photobooth"] },
