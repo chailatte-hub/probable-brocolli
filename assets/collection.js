@@ -70,4 +70,7 @@ window.COLLECTION = [
 
   { image: "assets/art/polaroid.jpg",      ratio: 0.8228, crop: 0.8228, focus: "50% 50%", height: 0.30, nudge: 0.12,
     place: "Photography, 2022",  note: "Model, photographer and art director. Paid in drinks." },
+
+  { image: "assets/art/aging-celebrations.jpg", ratio: 0.5608, crop: 0.8, focus: "50% 40%", height: 0.44, nudge: -0.06, space: 0.12,
+    place: "2020", month: "Jul", note: "of aging and celebrations", tags: ["xchelsea", "fujifilm x100f"] },
 ];
