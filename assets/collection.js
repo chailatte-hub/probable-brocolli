@@ -39,6 +39,9 @@ window.COLLECTION = [
     more: [{ image: "assets/art/shio-pan-2.jpg", ratio: 1.5 }, { image: "assets/art/shio-pan-3.jpg", ratio: 1.5 }],
     place: "2026", month: "May", note: "shio pan and potluck", tags: ["xrickie", "ricohgriii"] },
 
+  { image: "assets/art/hong-kong-calm.jpg", ratio: 0.6667, crop: 0.72, focus: "50% 45%", height: 0.48, nudge: 0.06, space: 0.11,
+    place: "Hong Kong, 2026", month: "May", note: "calm in chaos", tags: ["xrickie", "ricohgriii"] },
+
   { image: "assets/art/macritchie-1.jpg", ratio: 1.5, crop: 1.25, focus: "52% 45%", height: 0.28, nudge: 0.10, space: 0.11,
     more: [{ image: "assets/art/macritchie-2.jpg", ratio: 1.5 }, { image: "assets/art/macritchie-3.jpg", ratio: 1.5 }, { image: "assets/art/macritchie-4.jpg", ratio: 1.5 }],
     place: "MacRitchie, 2026", month: "May", tags: ["xrickie", "ricohgriii"] },
