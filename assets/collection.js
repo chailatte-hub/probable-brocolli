@@ -105,7 +105,6 @@ window.COLLECTION = [
     place: "Izu, 2024", month: "Dec", note: "izu sunrise", tags: ["xrickie", "ricohgriii"] },
 
   { image: "assets/art/self-portrait-30-1.jpg", ratio: 0.6667, crop: 0.75, focus: "50% 30%", height: 0.46, nudge: 0.05, space: 0.11,
-    more: [{ image: "assets/art/self-portrait-30-2.jpg", ratio: 0.6667 }],
     place: "Seoul, 2024", month: "Jul", note: "30 self portrait", tags: ["studio"] },
 
   { image: "assets/art/colour-jpg-1.jpg", ratio: 1.5, crop: 1.35, focus: "45% 50%", height: 0.26, nudge: -0.07, space: 0.11,
