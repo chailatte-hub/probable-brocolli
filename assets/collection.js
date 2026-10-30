@@ -67,6 +67,10 @@ window.COLLECTION = [
     more: [{ image: "assets/art/hyde-park-2.jpg", ratio: 1.5 }, { image: "assets/art/hyde-park-3.jpg", ratio: 1.5 }],
     place: "London, 2023", month: "Dec", note: "Hyde park with some friends", tags: ["xrickie", "ricohgriii"] },
 
+  { image: "assets/art/borough-market-1.jpg", ratio: 1.5, crop: 1.3, focus: "50% 45%", height: 0.28, nudge: 0.08, space: 0.11,
+    more: [{ image: "assets/art/borough-market-2.jpg", ratio: 1.5 }, { image: "assets/art/borough-market-3.jpg", ratio: 1.5 }, { image: "assets/art/borough-market-4.jpg", ratio: 1.5 }],
+    place: "London, 2023", month: "Dec", note: "borough market baes", tags: ["xrickie", "ricohgriii"] },
+
   { image: "assets/art/jeju-1.jpg", ratio: 1.5, crop: 1.4, focus: "50% 50%", height: 0.28, nudge: 0.07, space: 0.11,
     more: [{ image: "assets/art/jeju-2.jpg", ratio: 0.6667 }],
     place: "Jeju, 2023", month: "Oct", tags: ["xrickie", "ricohgriii"] },
