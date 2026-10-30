@@ -115,6 +115,9 @@ window.COLLECTION = [
   { image: "assets/art/bangkok-cases.jpg", ratio: 0.6650, crop: 0.80, focus: "45% 55%", height: 0.36, nudge: -0.11, space: 0.08,
     place: "Bangkok, 2024",      note: "Ugly phone cases." },
 
+  { image: "assets/art/fukuoka-film.jpg", ratio: 1.5088, crop: 1.4, focus: "50% 55%", height: 0.27, nudge: 0.08, space: 0.11,
+    place: "Fukuoka, 2024", month: "Mar", tags: ["film", "pentaxespio"] },
+
   { image: "assets/art/secret-santa-2023.jpg", ratio: 1.5, crop: 1.4, focus: "50% 45%", height: 0.22, nudge: -0.03, space: 0.11,
     place: "2023", month: "Dec", note: "secret santa", tags: ["xrickie", "ricohgriii"] },
 
