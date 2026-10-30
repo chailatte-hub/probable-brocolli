@@ -11,7 +11,7 @@
   const media = m => m.video
     ? `<video src="${m.video}" ${m.poster ? `poster="${m.poster}"` : ''} muted loop playsinline controls></video>`
     : `<img src="${m.image}" alt="" loading="lazy" decoding="async">`;
-  let track = null, total = 1;
+  let track = null, total = 1, refresh = () => {};
 
   window.openViewer = function (p) {
     const n = total = p.slides.length;
@@ -32,21 +32,23 @@
     if (n > 1) {
       const where = body.querySelector('.where'), prev = body.querySelector('.prev'), next = body.querySelector('.next');
       const update = () => {
-        const k = Math.round(track.scrollLeft / track.clientWidth);
+        const k = track.clientWidth ? Math.round(track.scrollLeft / track.clientWidth) : 0;
         where.textContent = `${k + 1} / ${n}`; prev.disabled = k === 0; next.disabled = k === n - 1;
       };
       track.addEventListener('scroll', update, { passive: true });
       prev.addEventListener('click', () => go(-1));
       next.addEventListener('click', () => go(1));
-      update();
-    }
+      refresh = update;
+    } else refresh = () => {};
     const v = body.querySelector('video'); if (v && !reduce) v.play().catch(() => {});
     dlg.showModal();
+    refresh();
     track.focus({ preventScroll: true });
   };
 
   function go(d) {
     if (!track) return;
+    if (!track.clientWidth) return;
     const k = Math.round(track.scrollLeft / track.clientWidth) + d;
     track.scrollTo({ left: Math.max(0, Math.min(total - 1, k)) * track.clientWidth, behavior: reduce ? 'auto' : 'smooth' });
   }
