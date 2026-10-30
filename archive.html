@@ -21,10 +21,14 @@
   /* Tight masonry: columns filled in order, shortest first, so it reads newest to oldest */
   .grid {
     display: flex; align-items: flex-start;
-    gap: clamp(10px, 1.6vw, 24px);
-    padding: clamp(8px, 2vw, 24px) clamp(16px, 4vw, 56px) 64px;
+    gap: var(--gap);
+    padding: 24px 56px 64px;
   }
-  .col { flex: 1; display: flex; flex-direction: column; gap: clamp(10px, 1.6vw, 24px); min-width: 0; }
+  /* Sizes are fixed in CSS pixels on purpose: browser zoom then changes how many columns fit,
+     so zooming out shows smaller tiles and more of the archive at once */
+  :root { --gap: 20px; }
+  @media (max-width: 600px) { :root { --gap: 10px; } .grid { padding: 8px 16px 48px; } }
+  .col { flex: 1; display: flex; flex-direction: column; gap: var(--gap); min-width: 0; }
   .tile {
     display: block; width: 100%; padding: 0; border: 0; cursor: zoom-in; background: #EEE;
     aspect-ratio: var(--ratio);
@@ -36,6 +40,7 @@
   .tile:hover > img, .tile:hover > video, .tile:focus-visible > img, .tile:focus-visible > video { filter: grayscale(0); }
 
   .tile { position: relative; }
+  .grid.tiny .count { display: none; }
   .tile .count {
     position: absolute; top: 8px; right: 8px;
     padding: 3px 7px; border-radius: 999px;
@@ -104,7 +109,19 @@
     ? `<video src="${m.video}" ${m.poster ? `poster="${m.poster}"` : ''} muted loop playsinline ${big ? 'controls' : 'autoplay aria-hidden="true"'}></video>`
     : `<img src="${big ? m.image : (m.thumb || m.image)}" alt="" loading="lazy" decoding="async">`;
 
-  const colCount = () => innerWidth < 600 ? 2 : innerWidth < 1000 ? 3 : 4;
+  // As many ~300px columns as fit (at least 2). Zooming the browser out makes more fit,
+  // and columns also narrow a little as you zoom out, so at the smallest zoom the whole
+  // archive fits on about one screen.
+  const zoom = () => {
+    const z = outerWidth && innerWidth ? outerWidth / innerWidth : 1;   // browser zoom on desktop
+    return Math.min(1, Math.max(0.25, z));
+  };
+  const colCount = () => {
+    const cs = getComputedStyle(grid), gap = parseFloat(cs.columnGap) || 20;
+    const avail = grid.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    const col = innerWidth > 600 ? 300 * (0.45 + 0.55 * zoom()) : 300;
+    return Math.max(2, Math.floor((avail + gap) / (col + gap)));
+  };
 
   function render() {
     const shown = items.filter(p => !select.value || p.year === select.value);
@@ -124,6 +141,8 @@
       target.h += 1 / (p.ratio || 0.8);
     });
     grid.replaceChildren(...cols.map(c => c.el));
+    // at very small sizes the photo-count chips are just specks, so hide them
+    grid.classList.toggle('tiny', (cols[0].el.getBoundingClientRect().width * zoom()) < 110);
   }
 
   select.addEventListener('change', () => {
