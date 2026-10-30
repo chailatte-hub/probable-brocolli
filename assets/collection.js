@@ -85,7 +85,7 @@ window.COLLECTION = [
     more: [{ image: "assets/art/nozawa-film-2.jpg", ratio: 1.3333 }],
     place: "Nozawa, 2026", month: "Jan", tags: ["film"] },
 
-  { video: "assets/art/nozawa-cold.mp4", poster: "assets/art/nozawa-cold-poster.jpg", ratio: 0.5625, crop: 0.7, focus: "50% 55%", height: 0.46, nudge: 0.05, space: 0.12,
+  { video: "assets/art/nozawa-snow-walk.mp4", poster: "assets/art/nozawa-cold-poster.jpg", ratio: 0.5625, crop: 0.7, focus: "50% 55%", height: 0.46, nudge: 0.05, space: 0.12,
     place: "Nozawa, 2026", month: "Jan", note: "Freezing our ass off" },
 
   { image: "assets/art/nozawa-yakiniku-1.jpg", ratio: 0.6667, crop: 0.8, focus: "50% 55%", height: 0.44, nudge: -0.06, space: 0.12,
