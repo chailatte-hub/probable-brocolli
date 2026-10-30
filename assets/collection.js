@@ -18,6 +18,11 @@
      more:   extra photos in the same post, [{ image, ratio }], swiped through up close
    ───────────────────────────────────────────────────────────── */
 window.COLLECTION = [
+  { image: "assets/art/taipei-mirror.jpg", ratio: 1.5, crop: 1.3, focus: "54% 50%", height: 0.23, nudge: -0.02, space: 0.11,
+    place: "Taipei, 2026", month: "Oct", tags: ["xrickie", "ricohgriii"] },
+  { image: "assets/art/taipei-manhole.jpg", ratio: 1.5, crop: 1.35, focus: "50% 55%", height: 0.21, stack: true, shift: 0.035,
+    place: "Taipei, 2026", month: "Oct", tags: ["xrickie", "ricohgriii"] },
+
   { image: "assets/art/pangkor-laut-1.jpg", ratio: 0.6667, crop: 0.80, focus: "40% 62%", height: 0.46, nudge: 0.07, space: 0.12,
     more: [{ image: "assets/art/pangkor-laut-2.jpg", ratio: 1.5 }, { image: "assets/art/pangkor-laut-3.jpg", ratio: 1.5 }],
     place: "Pangkor Laut, 2026", month: "Aug", tags: ["xrickie", "ricohgriii"] },
