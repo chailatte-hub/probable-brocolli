@@ -52,6 +52,10 @@ window.COLLECTION = [
     more: [{ image: "assets/art/secret-santa-2.jpg", ratio: 1.5 }],
     place: "2025", month: "Nov", note: "Annual Secret Santa. Always a good time", tags: ["ricohgriii", "xrickie"] },
 
+  { image: "assets/art/mumbai-1.jpg", ratio: 1.5, crop: 1.35, focus: "50% 50%", height: 0.27, nudge: -0.07, space: 0.11,
+    more: [{ image: "assets/art/mumbai-2.jpg", ratio: 1.5 }],
+    place: "Mumbai, 2025", month: "May", tags: ["xrickie", "ricohgriii"] },
+
   { image: "assets/art/pickleponies-1.jpg", ratio: 0.6644, crop: 0.75, focus: "40% 50%", height: 0.44, nudge: 0.06, space: 0.11,
     more: [{ image: "assets/art/pickleponies-2.jpg", ratio: 0.6644 }, { image: "assets/art/pickleponies-3.jpg", ratio: 1.505 }],
     place: "2025", month: "Mar", note: "pickleponies", tags: ["xrickie", "ricohgriii"] },
