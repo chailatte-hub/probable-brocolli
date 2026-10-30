@@ -61,7 +61,8 @@ window.COLLECTION = [
     place: "Nozawa, 2026", month: "Jan", note: "Freezing our ass off" },
 
   { image: "assets/art/party-julhan.jpg", ratio: 0.8231, crop: 0.8231, focus: "50% 50%", height: 0.34, nudge: 0.07, space: 0.11,
-    place: "2025", month: "Nov", note: "party for julhan", tags: ["Polaroid"] },
+    more: [{ image: "assets/art/party-julhan-2.jpg", ratio: 0.8221 }, { image: "assets/art/party-julhan-3.jpg", ratio: 0.8231 }],
+    place: "2025", month: "Nov", note: "party for julhan", tags: ["Polaroid", "i-type film"] },
 
   { image: "assets/art/secret-santa-1.jpg", ratio: 1.5, crop: 1.35, focus: "50% 50%", height: 0.30, nudge: -0.09, space: 0.12,
     more: [{ image: "assets/art/secret-santa-2.jpg", ratio: 1.5 }],
