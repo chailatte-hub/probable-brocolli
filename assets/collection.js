@@ -42,6 +42,9 @@ window.COLLECTION = [
     more: [{ image: "assets/art/bangkok-2026-2.jpg", ratio: 1.5088 }, { image: "assets/art/bangkok-2026-3.jpg", ratio: 1.5088 }],
     place: "Bangkok, 2026", month: "Jun", tags: ["film", "pentaxespio"] },
 
+  { video: "assets/art/senget-gals.mp4", poster: "assets/art/senget-gals-poster.jpg", ratio: 1.7778, crop: 1.5, focus: "40% 55%", height: 0.24, nudge: 0.06, space: 0.11,
+    place: "Bangkok, 2026", month: "Jun", note: "3 senget gals" },
+
   { image: "assets/art/gyeongju-1.jpg", ratio: 0.6667, crop: 0.80, focus: "50% 55%", height: 0.40, nudge: -0.07, space: 0.11,
     more: [{ image: "assets/art/gyeongju-2.jpg", ratio: 1.5 }, { image: "assets/art/gyeongju-3.jpg", ratio: 1.5 }],
     place: "Gyeongju, 2026", month: "May", tags: ["xrickie", "ricohgriii"] },
