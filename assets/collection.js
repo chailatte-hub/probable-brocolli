@@ -74,6 +74,9 @@ window.COLLECTION = [
   { video: "assets/art/nozawa-cold.mp4", poster: "assets/art/nozawa-cold-poster.jpg", ratio: 0.5625, crop: 0.7, focus: "50% 55%", height: 0.46, nudge: 0.05, space: 0.12,
     place: "Nozawa, 2026", month: "Jan", note: "Freezing our ass off" },
 
+  { video: "assets/art/japan-2026.mp4", poster: "assets/art/japan-2026-poster.jpg", ratio: 0.5625, crop: 0.7, focus: "50% 40%", height: 0.44, nudge: -0.05, space: 0.11,
+    place: "Japan, 2026", month: "Jan" },
+
   { image: "assets/art/party-julhan.jpg", ratio: 0.8231, crop: 0.8231, focus: "50% 50%", height: 0.34, nudge: 0.07, space: 0.09,
     place: "2025", month: "Nov", note: "party for julhan", tags: ["Polaroid", "itypefilm"] },
 
