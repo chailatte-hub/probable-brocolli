@@ -71,6 +71,9 @@ window.COLLECTION = [
   { image: "assets/art/polaroid.jpg",      ratio: 0.8228, crop: 0.8228, focus: "50% 50%", height: 0.30, nudge: 0.12,
     place: "Photography, 2022",  note: "Model, photographer and art director. Paid in drinks." },
 
+  { image: "assets/art/melbourne-library.jpg", ratio: 1.7831, crop: 1.4, focus: "50% 55%", height: 0.26, nudge: 0.09, space: 0.11,
+    place: "Melbourne, 2022", month: "Apr", tags: ["xchelsea", "fujifilm x100f"] },
+
   { image: "assets/art/secret-santa-2021-1.jpg", ratio: 1.7831, crop: 1.4, focus: "50% 50%", height: 0.28, nudge: -0.08, space: 0.11,
     more: [{ image: "assets/art/secret-santa-2021-2.jpg", ratio: 1.7831 }],
     place: "2021", month: "Dec", note: "secret santa", tags: ["xchelsea", "fujifilm x100f"] },
