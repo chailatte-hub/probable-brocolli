@@ -118,6 +118,10 @@ window.COLLECTION = [
   { image: "assets/art/fukuoka-film.jpg", ratio: 1.5088, crop: 1.4, focus: "50% 55%", height: 0.27, nudge: 0.08, space: 0.11,
     place: "Fukuoka, 2024", month: "Mar", tags: ["film", "pentaxespio"] },
 
+  { image: "assets/art/fukuoka-film-2.jpg", ratio: 0.6628, crop: 0.6628, focus: "50% 50%", height: 0.44, nudge: -0.06, space: 0.11,
+    more: [{ image: "assets/art/fukuoka-film-3.jpg", ratio: 1.5088 }],
+    place: "Fukuoka, 2024", month: "Mar", tags: ["film", "pentaxespio"] },
+
   { image: "assets/art/secret-santa-2023.jpg", ratio: 1.5, crop: 1.4, focus: "50% 45%", height: 0.22, nudge: -0.03, space: 0.11,
     place: "2023", month: "Dec", note: "secret santa", tags: ["xrickie", "ricohgriii"] },
 
