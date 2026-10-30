@@ -23,8 +23,8 @@ window.COLLECTION = [
   { image: "assets/art/taipei-manhole.jpg", ratio: 1.5, crop: 1.35, focus: "50% 55%", height: 0.21, stack: true, shift: 0.035,
     place: "Taipei, 2026", month: "Oct", tags: ["xrickie", "ricohgriii"] },
 
-  { image: "assets/art/pangkor-laut-1.jpg", ratio: 0.6667, crop: 0.80, focus: "40% 62%", height: 0.46, nudge: 0.07, space: 0.12,
-    more: [{ image: "assets/art/pangkor-laut-2.jpg", ratio: 1.5 }, { image: "assets/art/pangkor-laut-3.jpg", ratio: 1.5 }],
+  { image: "assets/art/pangkor-laut-2.jpg", ratio: 1.5, crop: 1.35, focus: "50% 55%", height: 0.30, nudge: 0.07, space: 0.12,
+    more: [{ image: "assets/art/pangkor-laut-3.jpg", ratio: 1.5 }, { image: "assets/art/pangkor-laut-1.jpg", ratio: 0.6667 }],
     place: "Pangkor Laut, 2026", month: "Aug", tags: ["xrickie", "ricohgriii"] },
 
   { video: "assets/art/pangkor-laut-video.mp4", poster: "assets/art/pangkor-laut-video-poster.jpg", ratio: 0.5625, crop: 0.7, focus: "50% 55%", height: 0.44, nudge: -0.05, space: 0.11,
